@@ -358,7 +358,207 @@ h1.glitch::after {
 }
 
 /* ============================================
-   SECTION 2: NEWS FEED — TERMINAL STYLE
+   SECTION 2: CONFIRMED LOG — DATA TABLE
+   ============================================ */
+#confirmed-log {
+  padding: 4rem 2rem;
+  background: linear-gradient(180deg, #000 0%, #0a0000 50%, #000 100%);
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.section-header h2 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  color: #ff0000;
+  letter-spacing: 4px;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 0 10px rgba(255,0,0,0.5);
+}
+
+.section-sub {
+  font-size: 0.8rem;
+  color: #8b0000;
+  letter-spacing: 1px;
+}
+
+/* Year filter tabs */
+.year-filters {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.year-btn {
+  background: none;
+  border: 1px solid #330000;
+  color: #8b0000;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.75rem;
+  padding: 0.4rem 1rem;
+  cursor: pointer;
+  letter-spacing: 2px;
+  transition: all 0.3s ease;
+}
+
+.year-btn:hover {
+  border-color: #ff0000;
+  color: #ff0000;
+}
+
+.year-btn.active {
+  background: rgba(255,0,0,0.15);
+  border-color: #ff0000;
+  color: #ff0000;
+  box-shadow: 0 0 10px rgba(255,0,0,0.2);
+}
+
+/* Log entries */
+.confirmed-table {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.log-entry {
+  border: 1px solid #220000;
+  padding: 1.2rem;
+  background: rgba(139,0,0,0.03);
+  transition: all 0.3s ease;
+  opacity: 0;
+  animation: logFadeIn 0.4s ease forwards;
+}
+
+@keyframes logFadeIn {
+  from { opacity: 0; transform: translateX(-10px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.log-entry:hover {
+  border-color: #ff0000;
+  background: rgba(255,0,0,0.06);
+  box-shadow: 0 0 15px rgba(255,0,0,0.1);
+}
+
+.log-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.3rem;
+}
+
+.log-company {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1rem;
+  color: #ff4444;
+  font-weight: 700;
+}
+
+.log-jobs {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1rem;
+  color: #ff0000;
+  font-weight: 900;
+  text-shadow: 0 0 8px rgba(255,0,0,0.5);
+}
+
+.log-date {
+  font-size: 0.7rem;
+  color: #00ff00;
+  letter-spacing: 1px;
+  margin-bottom: 0.4rem;
+}
+
+.log-desc {
+  font-size: 0.8rem;
+  color: #cc4444;
+  line-height: 1.4;
+  margin-bottom: 0.4rem;
+}
+
+.log-source {
+  font-size: 0.7rem;
+  color: #666;
+  letter-spacing: 1px;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  display: inline-block;
+}
+
+.log-source:hover {
+  color: #ff0000;
+}
+
+.log-source span {
+  color: #8b0000;
+}
+
+/* Sector breakdown */
+.sector-breakdown {
+  margin-top: 3rem;
+  border: 1px solid #220000;
+  padding: 1.5rem;
+  background: rgba(139,0,0,0.03);
+}
+
+.breakdown-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.85rem;
+  color: #ff0000;
+  letter-spacing: 3px;
+  margin-bottom: 1.2rem;
+  text-align: center;
+}
+
+.sector-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.sector-row {
+  display: grid;
+  grid-template-columns: 140px 1fr 80px;
+  align-items: center;
+  gap: 1rem;
+}
+
+.sector-name {
+  font-size: 0.75rem;
+  color: #cc4444;
+  letter-spacing: 1px;
+  text-align: right;
+}
+
+.sector-bar-track {
+  height: 8px;
+  background: #1a0000;
+  border: 1px solid #330000;
+  overflow: hidden;
+}
+
+.sector-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #8b0000, #ff0000);
+  box-shadow: 0 0 8px rgba(255,0,0,0.4);
+  transition: width 1s ease;
+}
+
+.sector-jobs {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.75rem;
+  color: #ff4444;
+}
+
+/* ============================================
+   SECTION 3: NEWS FEED — TERMINAL STYLE
    ============================================ */
 #news-feed {
   min-height: 100vh;
@@ -552,6 +752,12 @@ footer {
   letter-spacing: 1px;
 }
 
+.footer-update {
+  font-size: 0.65rem;
+  color: #330000;
+  letter-spacing: 1px;
+}
+
 /* ============================================
    RESPONSIVE
    ============================================ */
@@ -579,6 +785,17 @@ footer {
     width: 300px;
     height: 300px;
   }
+
+  .sector-row {
+    grid-template-columns: 100px 1fr 60px;
+    gap: 0.5rem;
+  }
+
+  .log-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.2rem;
+  }
 }
 
 @media (max-width: 480px) {
@@ -593,6 +810,14 @@ footer {
 
   .news-card {
     padding: 0.8rem;
+  }
+
+  .sector-row {
+    grid-template-columns: 80px 1fr 50px;
+  }
+
+  .sector-name {
+    font-size: 0.65rem;
   }
 }
 

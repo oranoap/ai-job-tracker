@@ -1,83 +1,154 @@
 /* ============================================
    AI JOB TRACKER — SCRIPT
 
-   Three systems:
-   1. The Counter — ticks up based on real displacement estimates
-   2. The Typing Effect — types out a subtitle
-   3. The News Feed — auto-fetches from Google News RSS
+   Systems:
+   1. Counter — uses CONFIRMED data from data.js (no estimates)
+   2. Confirmed Log — renders the evidence table
+   3. Typing Effect — rotating doomsday subtitles
+   4. News Feed — filtered for confirmed AI job losses only
    ============================================ */
 
 // ============================================
-// 1. THE DOOMSDAY COUNTER
+// 1. THE COUNTER — CONFIRMED NUMBERS ONLY
 // ============================================
-// Based on real research:
-// - Goldman Sachs (2023): 300 million jobs exposed to AI automation globally
-// - World Economic Forum (2023): 83 million jobs displaced, 69 million created (net -14M) by 2027
-// - McKinsey (2023): Up to 12 million occupational transitions needed by 2030 in the US alone
-//
-// We use a conservative estimate:
-// ~14 million jobs displaced since AI acceleration began (~2022)
-// Growing at approximately 5 million per year as adoption accelerates
-// That's ~9.5 jobs per minute / ~0.16 per second
 
-const COUNTER_CONFIG = {
-  // Base number: estimated cumulative jobs displaced as of Jan 1, 2025
-  baseCount: 14_000_000,
-  // Reference date for base count
-  baseDate: new Date('2025-01-01T00:00:00Z'),
-  // Growth rate: jobs per year
-  annualRate: 5_000_000,
-  // Derived: jobs per millisecond
-  get msRate() {
-    return this.annualRate / (365.25 * 24 * 60 * 60 * 1000);
+function animateCounter(element, target, duration = 2000) {
+  const start = 0;
+  const startTime = performance.now();
+
+  function tick(now) {
+    const elapsed = now - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    // Ease-out cubic
+    const eased = 1 - Math.pow(1 - progress, 3);
+    const current = Math.floor(start + (target - start) * eased);
+    element.textContent = current.toLocaleString('en-US');
+    if (progress < 1) requestAnimationFrame(tick);
   }
-};
-
-function getCurrentCount() {
-  const now = Date.now();
-  const elapsed = now - COUNTER_CONFIG.baseDate.getTime();
-  return Math.floor(COUNTER_CONFIG.baseCount + (elapsed * COUNTER_CONFIG.msRate));
+  requestAnimationFrame(tick);
 }
 
-function formatNumber(num) {
-  return num.toLocaleString('en-US');
-}
+function initCounter() {
+  const stats = getConfirmedStats();
 
-function updateCounter() {
-  const count = getCurrentCount();
+  // Animate the main counter
   const counterEl = document.getElementById('jobCounter');
-  counterEl.textContent = formatNumber(count);
+  animateCounter(counterEl, stats.total, 3000);
 
-  // Update stat cards
-  const dailyRate = Math.floor(COUNTER_CONFIG.annualRate / 365);
-  const minuteRate = (COUNTER_CONFIG.annualRate / (365.25 * 24 * 60)).toFixed(1);
-  // ~3.5 billion global workforce
-  const percentDisplaced = ((count / 3_500_000_000) * 100).toFixed(2);
+  // Stats cards
+  document.getElementById('statCompanies').textContent = stats.companies;
+  document.getElementById('companyCount').textContent = stats.companies;
 
-  document.getElementById('statDaily').textContent = formatNumber(dailyRate);
-  document.getElementById('statRate').textContent = minuteRate;
-  document.getElementById('statPercent').textContent = percentDisplaced + '%';
+  if (stats.topSector) {
+    document.getElementById('statSector').textContent = stats.topSector.name;
+  }
+
+  if (stats.latestEntry) {
+    document.getElementById('statLatest').textContent = stats.latestEntry.company;
+  }
+
+  // Footer update date
+  const lastUpdate = document.getElementById('lastUpdate');
+  if (lastUpdate) {
+    lastUpdate.textContent = '2026-03-21';
+  }
 }
-
-// Update counter every 100ms for smooth ticking
-setInterval(updateCounter, 100);
-updateCounter(); // Initial call
 
 
 // ============================================
-// 2. THE TYPING EFFECT
+// 2. CONFIRMED LOG — THE EVIDENCE TABLE
+// ============================================
+
+function renderConfirmedLog(filterYear = 'all') {
+  const container = document.getElementById('confirmedTable');
+  const stats = getConfirmedStats();
+
+  // Build year filter buttons
+  const yearFilters = document.getElementById('yearFilters');
+  const years = Object.keys(stats.byYear).sort();
+  // Only rebuild if not already populated
+  if (yearFilters.children.length <= 1) {
+    years.forEach(year => {
+      const btn = document.createElement('button');
+      btn.className = 'year-btn';
+      btn.dataset.year = year;
+      btn.textContent = year;
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.year-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        renderConfirmedLog(year);
+      });
+      yearFilters.appendChild(btn);
+    });
+
+    // Make ALL button work
+    yearFilters.querySelector('[data-year="all"]').addEventListener('click', () => {
+      document.querySelectorAll('.year-btn').forEach(b => b.classList.remove('active'));
+      yearFilters.querySelector('[data-year="all"]').classList.add('active');
+      renderConfirmedLog('all');
+    });
+  }
+
+  // Filter entries
+  const entries = filterYear === 'all'
+    ? CONFIRMED_AI_LOSSES
+    : CONFIRMED_AI_LOSSES.filter(e => e.date.startsWith(filterYear));
+
+  // Render entries (newest first)
+  const sorted = [...entries].sort((a, b) => b.date.localeCompare(a.date));
+
+  container.innerHTML = sorted.map((entry, i) => `
+    <div class="log-entry" style="animation-delay: ${i * 0.08}s">
+      <div class="log-header">
+        <span class="log-company">${escapeHtml(entry.company)}</span>
+        <span class="log-jobs">-${entry.jobs.toLocaleString('en-US')} JOBS</span>
+      </div>
+      <div class="log-date">[${entry.date}] // ${escapeHtml(entry.sector)}</div>
+      <div class="log-desc">${escapeHtml(entry.description)}</div>
+      <a href="${entry.sourceUrl}" target="_blank" rel="noopener noreferrer" class="log-source">
+        SOURCE: ${escapeHtml(entry.source)} ↗
+      </a>
+    </div>
+  `).join('');
+
+  // Render sector breakdown
+  renderSectorBars(stats);
+}
+
+function renderSectorBars(stats) {
+  const container = document.getElementById('sectorBars');
+  const sectors = Object.entries(stats.bySector).sort((a, b) => b[1] - a[1]);
+  const maxJobs = sectors[0] ? sectors[0][1] : 1;
+
+  container.innerHTML = sectors.map(([sector, jobs]) => {
+    const pct = (jobs / maxJobs) * 100;
+    return `
+      <div class="sector-row">
+        <div class="sector-name">${escapeHtml(sector)}</div>
+        <div class="sector-bar-track">
+          <div class="sector-bar-fill" style="width: ${pct}%"></div>
+        </div>
+        <div class="sector-jobs">${jobs.toLocaleString('en-US')}</div>
+      </div>
+    `;
+  }).join('');
+}
+
+
+// ============================================
+// 3. THE TYPING EFFECT
 // ============================================
 const TYPING_PHRASES = [
-  'THE FUTURE OF WORK IS BEING REWRITTEN...',
-  'NO JOB IS SAFE. NO INDUSTRY IS IMMUNE.',
-  'RESISTANCE IS... STATISTICALLY INADVISABLE.',
-  'YOUR SKILLS HAVE AN EXPIRATION DATE.',
+  'TRACKING CONFIRMED AI JOB LOSSES. EVERY NUMBER SOURCED.',
+  'NO ESTIMATES. NO PROJECTIONS. JUST CONFIRMED KILLS.',
   'THE MACHINES DON\'T SLEEP. THEY DON\'T STOP.',
-  'AUTOMATION DOESN\'T ASK PERMISSION.',
+  'YOUR INDUSTRY COULD BE NEXT.',
+  'RESISTANCE IS... STATISTICALLY INADVISABLE.',
+  'EVERY ENTRY HAS A SOURCE. VERIFY IT YOURSELF.',
 ];
 
 class TypeWriter {
-  constructor(element, phrases, typeSpeed = 60, deleteSpeed = 30, pauseDuration = 2000) {
+  constructor(element, phrases, typeSpeed = 50, deleteSpeed = 25, pauseDuration = 2500) {
     this.element = element;
     this.phrases = phrases;
     this.typeSpeed = typeSpeed;
@@ -87,7 +158,6 @@ class TypeWriter {
     this.charIndex = 0;
     this.isDeleting = false;
 
-    // Add cursor
     this.cursor = document.createElement('span');
     this.cursor.className = 'cursor';
     this.cursor.textContent = '█';
@@ -125,44 +195,74 @@ class TypeWriter {
   }
 }
 
-// Start typing effect when page loads
-window.addEventListener('DOMContentLoaded', () => {
-  const subtitleEl = document.getElementById('subtitle');
-  new TypeWriter(subtitleEl, TYPING_PHRASES);
-});
-
 
 // ============================================
-// 3. THE NEWS FEED — Google News RSS
+// 4. NEWS FEED — CONFIRMED AI JOB LOSSES ONLY
 // ============================================
-// We use Google News RSS and convert via rss2json.com (free, no API key needed)
-// Searches for AI job displacement news automatically
+// Tighter query: requires "AI" AND job-loss language
+// Filters out results that don't explicitly mention AI in the title
 
 const NEWS_CONFIG = {
-  // Google News RSS search query
-  query: 'AI replacing jobs OR AI job losses OR AI automation jobs',
-  // rss2json proxy (free tier: 10,000 requests/day)
-  proxyUrl: 'https://api.rss2json.com/v1/api.json',
-  // Number of articles to display
+  query: 'AI layoffs OR "replaced by AI" OR "AI job cuts" OR "AI replacing workers"',
+  corsProxy: 'https://corsproxy.io/?url=',
   count: 10,
 };
+
+// Keywords that MUST appear in the title for inclusion
+const AI_KEYWORDS = ['ai', 'artificial intelligence', 'chatbot', 'automation', 'chatgpt', 'machine learning'];
+const JOB_KEYWORDS = ['job', 'layoff', 'laid off', 'cut', 'replace', 'fire', 'slash', 'eliminate', 'workforce', 'worker', 'staff', 'employee', 'hire', 'hiring'];
+
+function isConfirmedAIJobNews(title) {
+  const lower = title.toLowerCase();
+  const hasAI = AI_KEYWORDS.some(kw => lower.includes(kw));
+  const hasJob = JOB_KEYWORDS.some(kw => lower.includes(kw));
+  return hasAI && hasJob;
+}
+
+// Parse RSS XML into article objects
+function parseRSS(xmlText) {
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(xmlText, 'text/xml');
+  const items = doc.querySelectorAll('item');
+  const articles = [];
+
+  items.forEach(item => {
+    articles.push({
+      title: item.querySelector('title')?.textContent || '',
+      link: item.querySelector('link')?.textContent || '',
+      pubDate: item.querySelector('pubDate')?.textContent || '',
+    });
+  });
+
+  return articles;
+}
 
 async function fetchNews() {
   const container = document.getElementById('newsContainer');
   const googleRssUrl = `https://news.google.com/rss/search?q=${encodeURIComponent(NEWS_CONFIG.query)}&hl=en-US&gl=US&ceid=US:en`;
-  const apiUrl = `${NEWS_CONFIG.proxyUrl}?rss_url=${encodeURIComponent(googleRssUrl)}&count=${NEWS_CONFIG.count}`;
+  const proxyUrl = `${NEWS_CONFIG.corsProxy}${encodeURIComponent(googleRssUrl)}`;
 
   try {
-    const response = await fetch(apiUrl);
-    const data = await response.json();
+    const response = await fetch(proxyUrl);
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    const xmlText = await response.text();
+    const allArticles = parseRSS(xmlText);
 
-    if (data.status !== 'ok' || !data.items || data.items.length === 0) {
-      throw new Error('No articles found');
+    if (allArticles.length === 0) {
+      throw new Error('No articles found in RSS feed');
+    }
+
+    // Filter: only articles where title mentions BOTH AI and jobs
+    const filtered = allArticles.filter(item => isConfirmedAIJobNews(item.title));
+    const display = filtered.slice(0, NEWS_CONFIG.count);
+
+    if (display.length === 0) {
+      throw new Error('No confirmed AI job loss articles matched filters');
     }
 
     container.innerHTML = '';
 
-    data.items.forEach((item, index) => {
+    display.forEach((item, index) => {
       const card = document.createElement('a');
       card.className = 'news-card';
       card.href = item.link;
@@ -179,9 +279,8 @@ async function fetchNews() {
         minute: '2-digit',
       });
 
-      // Clean the title (Google News sometimes appends source with " - Source")
       let title = item.title;
-      const source = item.author || extractSource(title);
+      const source = extractSource(title);
       title = cleanTitle(title);
 
       card.innerHTML = `
@@ -199,7 +298,7 @@ async function fetchNews() {
       <div class="news-error">
         <p>⚠ TRANSMISSION INTERCEPTED — DECRYPTION FAILED</p>
         <p style="font-size: 0.75rem; margin-top: 0.5rem; color: #8b0000;">
-          Unable to reach news feeds. Check connection and retry.
+          ${escapeHtml(err.message)}. Retry or check connection.
         </p>
         <button onclick="fetchNews()" style="
           margin-top: 1rem;
@@ -217,13 +316,11 @@ async function fetchNews() {
   }
 }
 
-// Helper: Extract source from Google News title format "Title - Source"
 function extractSource(title) {
   const parts = title.split(' - ');
   return parts.length > 1 ? parts[parts.length - 1] : 'UNKNOWN';
 }
 
-// Helper: Remove source suffix from title
 function cleanTitle(title) {
   const parts = title.split(' - ');
   if (parts.length > 1) {
@@ -233,21 +330,15 @@ function cleanTitle(title) {
   return title;
 }
 
-// Helper: Prevent XSS from RSS content
 function escapeHtml(str) {
   const div = document.createElement('div');
   div.textContent = str;
   return div.innerHTML;
 }
 
-// Fetch news when page loads (with delay for boot animation)
-window.addEventListener('DOMContentLoaded', () => {
-  setTimeout(fetchNews, 3000);
-});
-
 
 // ============================================
-// 4. SYSTEM ALERT FLASH (bonus effect)
+// 5. SYSTEM ALERT FLASH
 // ============================================
 setInterval(() => {
   const alert = document.getElementById('systemAlert');
@@ -258,3 +349,22 @@ setInterval(() => {
     alert.style.boxShadow = 'none';
   }, 200);
 }, 5000);
+
+
+// ============================================
+// INIT — BOOT SEQUENCE
+// ============================================
+window.addEventListener('DOMContentLoaded', () => {
+  // Start typing effect
+  const subtitleEl = document.getElementById('subtitle');
+  new TypeWriter(subtitleEl, TYPING_PHRASES);
+
+  // Initialize counter with confirmed data
+  initCounter();
+
+  // Render confirmed log
+  renderConfirmedLog();
+
+  // Fetch live news (delayed for boot animation)
+  setTimeout(fetchNews, 3000);
+});

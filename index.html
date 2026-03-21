@@ -37,39 +37,67 @@
       <p class="subtitle typing" id="subtitle"></p>
 
       <div class="counter-container">
-        <div class="counter-label">ESTIMATED GLOBAL JOBS DISPLACED BY AI</div>
+        <div class="counter-label">CONFIRMED JOBS TAKEN BY AI</div>
         <div class="counter" id="jobCounter">0</div>
-        <div class="counter-subtext">and counting...</div>
+        <div class="counter-subtext">verified from <span id="companyCount">0</span> companies</div>
       </div>
 
       <div class="stats-grid">
         <div class="stat-card">
-          <div class="stat-number" id="statDaily">0</div>
-          <div class="stat-label">DISPLACED TODAY</div>
+          <div class="stat-number" id="statCompanies">0</div>
+          <div class="stat-label">COMPANIES CONFIRMED</div>
         </div>
         <div class="stat-card">
-          <div class="stat-number" id="statRate">0</div>
-          <div class="stat-label">PER MINUTE</div>
+          <div class="stat-number" id="statSector">—</div>
+          <div class="stat-label">HARDEST HIT SECTOR</div>
         </div>
         <div class="stat-card">
-          <div class="stat-number" id="statPercent">0%</div>
-          <div class="stat-label">OF WORKFORCE</div>
+          <div class="stat-number" id="statLatest">—</div>
+          <div class="stat-label">LATEST CONFIRMED</div>
         </div>
       </div>
 
       <div class="data-source">
-        DATA SOURCE: World Economic Forum, McKinsey Global Institute, Goldman Sachs Research
+        EVERY NUMBER BACKED BY A SOURCE — SCROLL DOWN FOR FULL EVIDENCE LOG
       </div>
     </div>
 
     <div class="scroll-indicator">
-      <span>INCOMING TRANSMISSIONS</span>
+      <span>CONFIRMED KILL LIST</span>
       <div class="arrow-down"></div>
     </div>
   </section>
 
   <!--========================================
-    SECTION 2: THE NEWS FEED (TERMINAL STYLE)
+    SECTION 2: CONFIRMED LOSSES — DATA LOG
+  =========================================-->
+  <section id="confirmed-log">
+    <div class="section-header">
+      <h2 class="glitch-small" data-text="CONFIRMED KILLS">CONFIRMED KILLS</h2>
+      <p class="section-sub">Every entry verified. Every number sourced. Click any source to verify.</p>
+    </div>
+
+    <!-- Year filter tabs -->
+    <div class="year-filters" id="yearFilters">
+      <button class="year-btn active" data-year="all">ALL</button>
+    </div>
+
+    <!-- The data table / log -->
+    <div id="confirmedTable" class="confirmed-table">
+      <!-- Populated by JavaScript from data.js -->
+    </div>
+
+    <!-- Sector breakdown -->
+    <div class="sector-breakdown">
+      <h3 class="breakdown-title">SECTOR BREAKDOWN</h3>
+      <div id="sectorBars" class="sector-bars">
+        <!-- Populated by JavaScript -->
+      </div>
+    </div>
+  </section>
+
+  <!--========================================
+    SECTION 3: THE NEWS FEED (TERMINAL STYLE)
   =========================================-->
   <section id="news-feed">
     <div class="terminal-header">
@@ -78,7 +106,7 @@
         <span class="dot yellow"></span>
         <span class="dot green"></span>
       </div>
-      <span class="terminal-title">INTERCEPTED_TRANSMISSIONS.log</span>
+      <span class="terminal-title">LIVE_FEED // AI confirmed job losses</span>
     </div>
 
     <div class="terminal-body">
@@ -86,7 +114,10 @@
         <span class="prompt">&gt;</span> Scanning global news networks...
       </div>
       <div class="terminal-line boot-line">
-        <span class="prompt">&gt;</span> Filtering: "AI" + "jobs" + "replacement"...
+        <span class="prompt">&gt;</span> Filtering: "AI" + "confirmed" + "job cuts" + "replaced by AI"...
+      </div>
+      <div class="terminal-line boot-line">
+        <span class="prompt">&gt;</span> Excluding: general layoffs, unrelated restructuring...
       </div>
       <div class="terminal-line boot-line">
         <span class="prompt">&gt;</span> Decrypting feeds... <span class="success">[OK]</span>
@@ -96,7 +127,6 @@
       </div>
 
       <div id="newsContainer" class="news-container">
-        <!-- News articles injected by JavaScript -->
         <div class="loading-indicator">
           <span class="blink">█</span> LOADING TRANSMISSIONS...
         </div>
@@ -109,9 +139,12 @@
     <div class="footer-content">
       <p class="glitch-small" data-text="SKYNET APPROVED">SKYNET APPROVED</p>
       <p class="footer-sub">The machines are watching. The data doesn't lie.</p>
+      <p class="footer-update">Last data update: <span id="lastUpdate"></span></p>
     </div>
   </footer>
 
+  <!-- Data file first, then main script -->
+  <script src="data.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
