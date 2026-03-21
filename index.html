@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI JOB TRACKER // SYSTEM ONLINE</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- CRT Scanline Overlay — sits on top of everything -->
+  <div class="scanline-overlay"></div>
+
+  <!-- Flicker overlay for CRT power-on effect -->
+  <div class="crt-flicker"></div>
+
+  <!--========================================
+    SECTION 1: THE DOOMSDAY COUNTER (HERO)
+  =========================================-->
+  <section id="hero">
+    <!-- Terminator Eye Background -->
+    <div class="terminator-eye">
+      <div class="eye-ring ring-1"></div>
+      <div class="eye-ring ring-2"></div>
+      <div class="eye-ring ring-3"></div>
+      <div class="eye-pupil"></div>
+    </div>
+
+    <div class="hero-content">
+      <div class="system-alert" id="systemAlert">
+        <span class="alert-icon">⚠</span> SYSTEM ALERT: WORKFORCE DISPLACEMENT DETECTED
+      </div>
+
+      <h1 class="glitch" data-text="AI JOB TRACKER">AI JOB TRACKER</h1>
+      <p class="subtitle typing" id="subtitle"></p>
+
+      <div class="counter-container">
+        <div class="counter-label">ESTIMATED GLOBAL JOBS DISPLACED BY AI</div>
+        <div class="counter" id="jobCounter">0</div>
+        <div class="counter-subtext">and counting...</div>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number" id="statDaily">0</div>
+          <div class="stat-label">DISPLACED TODAY</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" id="statRate">0</div>
+          <div class="stat-label">PER MINUTE</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" id="statPercent">0%</div>
+          <div class="stat-label">OF WORKFORCE</div>
+        </div>
+      </div>
+
+      <div class="data-source">
+        DATA SOURCE: World Economic Forum, McKinsey Global Institute, Goldman Sachs Research
+      </div>
+    </div>
+
+    <div class="scroll-indicator">
+      <span>INCOMING TRANSMISSIONS</span>
+      <div class="arrow-down"></div>
+    </div>
+  </section>
+
+  <!--========================================
+    SECTION 2: THE NEWS FEED (TERMINAL STYLE)
+  =========================================-->
+  <section id="news-feed">
+    <div class="terminal-header">
+      <div class="terminal-dots">
+        <span class="dot red"></span>
+        <span class="dot yellow"></span>
+        <span class="dot green"></span>
+      </div>
+      <span class="terminal-title">INTERCEPTED_TRANSMISSIONS.log</span>
+    </div>
+
+    <div class="terminal-body">
+      <div class="terminal-line boot-line">
+        <span class="prompt">&gt;</span> Scanning global news networks...
+      </div>
+      <div class="terminal-line boot-line">
+        <span class="prompt">&gt;</span> Filtering: "AI" + "jobs" + "replacement"...
+      </div>
+      <div class="terminal-line boot-line">
+        <span class="prompt">&gt;</span> Decrypting feeds... <span class="success">[OK]</span>
+      </div>
+      <div class="terminal-line boot-line">
+        <span class="prompt">&gt;</span> Displaying results:
+      </div>
+
+      <div id="newsContainer" class="news-container">
+        <!-- News articles injected by JavaScript -->
+        <div class="loading-indicator">
+          <span class="blink">█</span> LOADING TRANSMISSIONS...
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <p class="glitch-small" data-text="SKYNET APPROVED">SKYNET APPROVED</p>
+      <p class="footer-sub">The machines are watching. The data doesn't lie.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

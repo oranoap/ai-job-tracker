@@ -1,0 +1,605 @@
+/* ============================================
+   AI JOB TRACKER — TERMINATOR THEME
+   Color Palette: Black, Red (#ff0000), Dark Red (#8b0000)
+   Fonts: Orbitron (headers), Share Tech Mono (body/terminal)
+   ============================================ */
+
+/* --- RESET & BASE --- */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #000;
+  color: #ff0000;
+  font-family: 'Share Tech Mono', monospace;
+  overflow-x: hidden;
+  cursor: default;
+}
+
+/* --- CRT SCANLINE OVERLAY --- */
+.scanline-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.15) 0px,
+    rgba(0, 0, 0, 0.15) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+}
+
+/* CRT flicker on load */
+.crt-flicker {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9998;
+  animation: crtFlicker 0.1s ease-in-out 3;
+}
+
+@keyframes crtFlicker {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 0.08; background: #fff; }
+}
+
+/* ============================================
+   SECTION 1: HERO — THE DOOMSDAY COUNTER
+   ============================================ */
+#hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 2rem;
+  overflow: hidden;
+  background: radial-gradient(ellipse at center, #1a0000 0%, #000 70%);
+}
+
+/* --- TERMINATOR EYE (background element) --- */
+.terminator-eye {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 600px;
+  opacity: 0.08;
+  z-index: 0;
+}
+
+.eye-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 2px solid #ff0000;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.ring-1 {
+  width: 100%;
+  height: 100%;
+  animation: eyePulse 4s ease-in-out infinite;
+}
+
+.ring-2 {
+  width: 70%;
+  height: 70%;
+  animation: eyePulse 4s ease-in-out infinite 0.5s;
+}
+
+.ring-3 {
+  width: 40%;
+  height: 40%;
+  animation: eyePulse 4s ease-in-out infinite 1s;
+}
+
+.eye-pupil {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  background: radial-gradient(circle, #ff0000 0%, #8b0000 40%, transparent 70%);
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 60px #ff0000, 0 0 120px #8b0000;
+  animation: eyeGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes eyePulse {
+  0%, 100% { opacity: 0.3; transform: translate(-50%, -50%) scale(1); }
+  50% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.05); }
+}
+
+@keyframes eyeGlow {
+  0% { box-shadow: 0 0 60px #ff0000, 0 0 120px #8b0000; }
+  100% { box-shadow: 0 0 100px #ff0000, 0 0 200px #8b0000, 0 0 300px rgba(139,0,0,0.3); }
+}
+
+/* --- HERO CONTENT --- */
+.hero-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  max-width: 900px;
+}
+
+/* System Alert Banner */
+.system-alert {
+  background: rgba(255, 0, 0, 0.1);
+  border: 1px solid #ff0000;
+  padding: 0.6rem 1.5rem;
+  margin-bottom: 2rem;
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  animation: alertPulse 2s ease-in-out infinite;
+  display: inline-block;
+}
+
+.alert-icon {
+  color: #ff4444;
+  margin-right: 0.5rem;
+}
+
+@keyframes alertPulse {
+  0%, 100% { border-color: #ff0000; background: rgba(255,0,0,0.1); }
+  50% { border-color: #ff4444; background: rgba(255,0,0,0.2); }
+}
+
+/* --- GLITCH TEXT EFFECT --- */
+h1.glitch {
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(2rem, 6vw, 4.5rem);
+  font-weight: 900;
+  color: #ff0000;
+  position: relative;
+  text-shadow: 0 0 10px rgba(255,0,0,0.8);
+  margin-bottom: 1rem;
+  letter-spacing: 4px;
+}
+
+h1.glitch::before,
+h1.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+h1.glitch::before {
+  color: #0ff;
+  z-index: -1;
+  animation: glitch1 3s infinite linear alternate-reverse;
+}
+
+h1.glitch::after {
+  color: #f0f;
+  z-index: -2;
+  animation: glitch2 2s infinite linear alternate-reverse;
+}
+
+@keyframes glitch1 {
+  0%, 90%, 100% { clip-path: inset(0 0 0 0); transform: translate(0); }
+  92% { clip-path: inset(20% 0 60% 0); transform: translate(-4px, 2px); }
+  94% { clip-path: inset(50% 0 20% 0); transform: translate(4px, -2px); }
+  96% { clip-path: inset(70% 0 5% 0); transform: translate(-2px, 4px); }
+  98% { clip-path: inset(10% 0 80% 0); transform: translate(2px, -4px); }
+}
+
+@keyframes glitch2 {
+  0%, 88%, 100% { clip-path: inset(0 0 0 0); transform: translate(0); }
+  90% { clip-path: inset(40% 0 30% 0); transform: translate(3px, -1px); }
+  93% { clip-path: inset(10% 0 70% 0); transform: translate(-3px, 1px); }
+  95% { clip-path: inset(60% 0 10% 0); transform: translate(1px, 3px); }
+  97% { clip-path: inset(5% 0 90% 0); transform: translate(-1px, -3px); }
+}
+
+/* Small glitch variant */
+.glitch-small {
+  position: relative;
+  display: inline-block;
+}
+.glitch-small::before {
+  content: attr(data-text);
+  position: absolute;
+  top: 0; left: 0;
+  color: #0ff;
+  z-index: -1;
+  animation: glitch1 4s infinite linear alternate-reverse;
+}
+
+/* --- SUBTITLE (typing effect target) --- */
+.subtitle {
+  font-size: 1rem;
+  color: #ff4444;
+  letter-spacing: 3px;
+  min-height: 1.5em;
+  margin-bottom: 2.5rem;
+}
+
+.subtitle .cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  background: #ff0000;
+  margin-left: 2px;
+  animation: blink 0.7s step-end infinite;
+  vertical-align: text-bottom;
+}
+
+/* --- THE COUNTER --- */
+.counter-container {
+  margin: 2rem 0;
+}
+
+.counter-label {
+  font-size: 0.85rem;
+  letter-spacing: 3px;
+  color: #cc0000;
+  margin-bottom: 0.8rem;
+}
+
+.counter {
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(3rem, 10vw, 7rem);
+  font-weight: 900;
+  color: #ff0000;
+  text-shadow:
+    0 0 20px rgba(255,0,0,0.8),
+    0 0 40px rgba(255,0,0,0.4),
+    0 0 80px rgba(139,0,0,0.3);
+  letter-spacing: 4px;
+  line-height: 1;
+}
+
+.counter-subtext {
+  font-size: 0.9rem;
+  color: #8b0000;
+  margin-top: 0.5rem;
+  animation: subtextPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes subtextPulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+/* --- STATS GRID --- */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin: 2.5rem 0;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.stat-card {
+  border: 1px solid rgba(255,0,0,0.3);
+  padding: 1.2rem;
+  background: rgba(139,0,0,0.05);
+  transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+  border-color: #ff0000;
+  background: rgba(139,0,0,0.15);
+  box-shadow: 0 0 20px rgba(255,0,0,0.2);
+}
+
+.stat-number {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #ff0000;
+  text-shadow: 0 0 10px rgba(255,0,0,0.5);
+}
+
+.stat-label {
+  font-size: 0.7rem;
+  color: #8b0000;
+  letter-spacing: 2px;
+  margin-top: 0.3rem;
+}
+
+/* --- DATA SOURCE --- */
+.data-source {
+  font-size: 0.65rem;
+  color: #4a0000;
+  letter-spacing: 1px;
+  margin-top: 1rem;
+}
+
+/* --- SCROLL INDICATOR --- */
+.scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  text-align: center;
+  font-size: 0.7rem;
+  letter-spacing: 3px;
+  color: #8b0000;
+  animation: scrollBounce 2s ease-in-out infinite;
+}
+
+.arrow-down {
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 8px solid #ff0000;
+  margin: 0.5rem auto 0;
+}
+
+@keyframes scrollBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(10px); }
+}
+
+/* ============================================
+   SECTION 2: NEWS FEED — TERMINAL STYLE
+   ============================================ */
+#news-feed {
+  min-height: 100vh;
+  padding: 2rem;
+  background: #000;
+}
+
+.terminal-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: #1a0000;
+  padding: 0.8rem 1.2rem;
+  border: 1px solid #330000;
+  border-bottom: none;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.terminal-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+.dot.red { background: #ff0000; }
+.dot.yellow { background: #ffaa00; }
+.dot.green { background: #00ff00; }
+
+.terminal-title {
+  font-size: 0.75rem;
+  color: #666;
+  letter-spacing: 1px;
+}
+
+.terminal-body {
+  background: #0a0000;
+  border: 1px solid #330000;
+  padding: 1.5rem;
+  max-width: 900px;
+  margin: 0 auto;
+  min-height: 60vh;
+}
+
+.terminal-line {
+  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
+  opacity: 0;
+  animation: fadeInLine 0.5s ease forwards;
+}
+
+.boot-line:nth-child(1) { animation-delay: 0.5s; }
+.boot-line:nth-child(2) { animation-delay: 1.2s; }
+.boot-line:nth-child(3) { animation-delay: 2s; }
+.boot-line:nth-child(4) { animation-delay: 2.8s; }
+
+@keyframes fadeInLine {
+  from { opacity: 0; transform: translateX(-10px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.prompt {
+  color: #00ff00;
+  margin-right: 0.5rem;
+}
+
+.success {
+  color: #00ff00;
+}
+
+/* --- NEWS CARDS --- */
+.news-container {
+  margin-top: 1.5rem;
+}
+
+.news-card {
+  border: 1px solid #330000;
+  padding: 1.2rem;
+  margin-bottom: 1rem;
+  background: rgba(139,0,0,0.05);
+  transition: all 0.3s ease;
+  opacity: 0;
+  animation: newsSlideIn 0.6s ease forwards;
+  cursor: pointer;
+  text-decoration: none;
+  display: block;
+  color: inherit;
+}
+
+.news-card:nth-child(1) { animation-delay: 3.5s; }
+.news-card:nth-child(2) { animation-delay: 3.8s; }
+.news-card:nth-child(3) { animation-delay: 4.1s; }
+.news-card:nth-child(4) { animation-delay: 4.4s; }
+.news-card:nth-child(5) { animation-delay: 4.7s; }
+.news-card:nth-child(6) { animation-delay: 5.0s; }
+.news-card:nth-child(7) { animation-delay: 5.3s; }
+.news-card:nth-child(8) { animation-delay: 5.6s; }
+.news-card:nth-child(9) { animation-delay: 5.9s; }
+.news-card:nth-child(10) { animation-delay: 6.2s; }
+
+@keyframes newsSlideIn {
+  from { opacity: 0; transform: translateY(10px); border-color: #ff0000; }
+  to { opacity: 1; transform: translateY(0); border-color: #330000; }
+}
+
+.news-card:hover {
+  border-color: #ff0000;
+  background: rgba(255,0,0,0.08);
+  box-shadow: 0 0 15px rgba(255,0,0,0.15);
+}
+
+.news-timestamp {
+  font-size: 0.7rem;
+  color: #00ff00;
+  letter-spacing: 1px;
+  margin-bottom: 0.4rem;
+}
+
+.news-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.95rem;
+  color: #ff4444;
+  margin-bottom: 0.4rem;
+  line-height: 1.4;
+}
+
+.news-source {
+  font-size: 0.7rem;
+  color: #666;
+  letter-spacing: 1px;
+}
+
+.news-source span {
+  color: #8b0000;
+}
+
+/* Loading indicator */
+.loading-indicator {
+  text-align: center;
+  padding: 2rem;
+  color: #8b0000;
+  font-size: 0.9rem;
+}
+
+.blink {
+  animation: blink 0.7s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Error state */
+.news-error {
+  text-align: center;
+  padding: 2rem;
+  color: #ff4444;
+  border: 1px solid #ff0000;
+  background: rgba(255,0,0,0.05);
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+footer {
+  padding: 3rem 2rem;
+  text-align: center;
+  border-top: 1px solid #1a0000;
+  background: #000;
+}
+
+.footer-content p {
+  margin-bottom: 0.5rem;
+}
+
+.footer-content .glitch-small {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1rem;
+  color: #ff0000;
+  letter-spacing: 4px;
+}
+
+.footer-sub {
+  font-size: 0.75rem;
+  color: #4a0000;
+  letter-spacing: 1px;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 768px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .stat-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .stat-label {
+    margin-top: 0;
+  }
+
+  .terminal-body {
+    padding: 1rem;
+  }
+
+  .terminator-eye {
+    width: 300px;
+    height: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  #hero {
+    padding: 1rem;
+  }
+
+  .system-alert {
+    font-size: 0.65rem;
+    padding: 0.4rem 0.8rem;
+  }
+
+  .news-card {
+    padding: 0.8rem;
+  }
+}
+
+/* ============================================
+   UTILITY — SELECTION COLOR
+   ============================================ */
+::selection {
+  background: #ff0000;
+  color: #000;
+}
