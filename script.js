@@ -59,7 +59,7 @@ function initCounter() {
 // 2. CONFIRMED LOG — THE EVIDENCE TABLE
 // ============================================
 
-function renderConfirmedLog(filterYear = 'all') {
+function renderConfirmedLog(filterYear = '2026') {
   const container = document.getElementById('confirmedTable');
   const stats = getConfirmedStats();
 
@@ -70,7 +70,7 @@ function renderConfirmedLog(filterYear = 'all') {
   if (yearFilters.children.length <= 1) {
     years.forEach(year => {
       const btn = document.createElement('button');
-      btn.className = 'year-btn';
+      btn.className = year === '2026' ? 'year-btn active' : 'year-btn';
       btn.dataset.year = year;
       btn.textContent = year;
       btn.addEventListener('click', () => {
