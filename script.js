@@ -203,13 +203,18 @@ class TypeWriter {
 // Filters out results that don't explicitly mention AI in the title
 
 const NEWS_CONFIG = {
-  query: 'AI layoffs OR "replaced by AI" OR "AI job cuts" OR "AI replacing workers"',
+  // Multiple queries to cast a wider net
+  queries: [
+    'AI layoffs OR "replaced by AI" OR "AI job cuts"',
+    '"AI replacing workers" OR "AI restructuring" layoffs',
+    '"artificial intelligence" "job losses" OR "workforce reduction"',
+  ],
   corsProxy: 'https://corsproxy.io/?url=',
-  count: 10,
+  count: 20,
 };
 
 // Keywords that MUST appear in the title for inclusion
-const AI_KEYWORDS = ['ai', 'artificial intelligence', 'chatbot', 'automation', 'chatgpt', 'machine learning'];
+const AI_KEYWORDS = ['ai', 'artificial intelligence', 'chatbot', 'automation', 'chatgpt', 'machine learning', 'generative ai'];
 const JOB_KEYWORDS = ['job', 'layoff', 'laid off', 'cut', 'replace', 'fire', 'slash', 'eliminate', 'workforce', 'worker', 'staff', 'employee', 'hire', 'hiring'];
 
 function isConfirmedAIJobNews(title) {
@@ -237,24 +242,55 @@ function parseRSS(xmlText) {
   return articles;
 }
 
+// Deduplicate articles by title similarity
+function deduplicateArticles(articles) {
+  const seen = new Set();
+  return articles.filter(item => {
+    // Normalize: lowercase, remove source suffix, trim
+    const normalized = item.title.toLowerCase().split(' - ')[0].trim();
+    // Use first 60 chars as fingerprint to catch near-duplicates
+    const key = normalized.substring(0, 60);
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+}
+
 async function fetchNews() {
   const container = document.getElementById('newsContainer');
-  const googleRssUrl = `https://news.google.com/rss/search?q=${encodeURIComponent(NEWS_CONFIG.query)}&hl=en-US&gl=US&ceid=US:en`;
-  const proxyUrl = `${NEWS_CONFIG.corsProxy}${encodeURIComponent(googleRssUrl)}`;
 
   try {
-    const response = await fetch(proxyUrl);
-    if (!response.ok) throw new Error(`HTTP ${response.status}`);
-    const xmlText = await response.text();
-    const allArticles = parseRSS(xmlText);
+    // Fetch from all queries in parallel
+    const fetchPromises = NEWS_CONFIG.queries.map(async (query) => {
+      const googleRssUrl = `https://news.google.com/rss/search?q=${encodeURIComponent(query)}&hl=en-US&gl=US&ceid=US:en`;
+      const proxyUrl = `${NEWS_CONFIG.corsProxy}${encodeURIComponent(googleRssUrl)}`;
+      try {
+        const response = await fetch(proxyUrl);
+        if (!response.ok) return [];
+        const xmlText = await response.text();
+        return parseRSS(xmlText);
+      } catch {
+        return [];
+      }
+    });
+
+    const results = await Promise.all(fetchPromises);
+    const allArticles = results.flat();
 
     if (allArticles.length === 0) {
-      throw new Error('No articles found in RSS feed');
+      throw new Error('No articles found in RSS feeds');
     }
 
     // Filter: only articles where title mentions BOTH AI and jobs
     const filtered = allArticles.filter(item => isConfirmedAIJobNews(item.title));
-    const display = filtered.slice(0, NEWS_CONFIG.count);
+
+    // Deduplicate across queries
+    const unique = deduplicateArticles(filtered);
+
+    // Sort by date — newest first
+    unique.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
+
+    const display = unique.slice(0, NEWS_CONFIG.count);
 
     if (display.length === 0) {
       throw new Error('No confirmed AI job loss articles matched filters');
