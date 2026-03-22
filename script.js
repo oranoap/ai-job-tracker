@@ -210,7 +210,7 @@ const NEWS_CONFIG = {
     '"artificial intelligence" "job losses" OR "workforce reduction"',
   ],
   corsProxy: 'https://corsproxy.io/?url=',
-  count: 20,
+  count: 5,
 };
 
 // Keywords that MUST appear in the title for inclusion
