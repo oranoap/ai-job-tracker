@@ -134,6 +134,20 @@ const KNOWN_COMPANIES = new Set([
   'paycom', 'wisetech', 'baker mckenzie', 'dentons', 'latham',
 ]);
 
+// Words that should never be a standalone company name
+const INVALID_STANDALONE = new Set([
+  'ai', 'the', 'tech', 'jobs', 'ceo', 'cfo', 'cto', 'update', 'report',
+  'news', 'alert', 'breaking', 'exclusive', 'analysis', 'opinion',
+]);
+
+// Person name indicators — reject if the "company" looks like a person
+const PERSON_PREFIXES = [
+  'jack', 'elon', 'mark', 'jeff', 'tim', 'sam', 'sundar', 'satya',
+  'andy', 'lisa', 'jensen', 'bob', 'steve', 'bill', 'larry', 'sergey',
+  'brian', 'dara', 'daniel', 'david', 'john', 'james', 'michael',
+  'richard', 'robert', 'thomas', 'william', 'charles', 'chris',
+];
+
 function isValidCompanyName(name) {
   if (!name) return false;
 
@@ -149,27 +163,44 @@ function isValidCompanyName(name) {
   const words = trimmed.split(/\s+/);
   if (words.length > 4) return false;
 
-  // Check if it's a known company
   const lower = trimmed.toLowerCase();
+
+  // Reject standalone invalid names (like just "AI")
+  if (INVALID_STANDALONE.has(lower)) return false;
+
+  // Reject person names (e.g., "Jack Dorsey")
+  if (PERSON_PREFIXES.includes(words[0].toLowerCase()) && words.length <= 3) return false;
+
+  // Reject if contains "joint venture", "venture", or similar non-company phrases
+  if (/\b(joint venture|venture|partnership|consortium|subsidiary)\b/i.test(trimmed)) return false;
+
+  // Reject if contains filler phrases
+  if (/\b(has|is|are|was|were|to|and|the|over|more|than|could|can|will|been|being)\b/i.test(trimmed)) return false;
+
+  // Check if it EXACTLY matches a known company (not prefix)
   for (const known of KNOWN_COMPANIES) {
-    if (lower === known || lower.startsWith(known)) return true;
+    if (lower === known) return true;
+  }
+
+  // For multi-word names, check if the first word matches a known company
+  if (words.length > 1) {
+    for (const known of KNOWN_COMPANIES) {
+      if (words[0].toLowerCase() === known) return true;
+    }
   }
 
   // If not known, apply strict filters
-  // First word must not be a filler/reject word
-  if (FILLER_WORDS.has(words[0].toLowerCase())) return false;
-  if (REJECT_WORDS.has(words[0].toLowerCase())) return false;
-
-  // No word should be a reject word
+  // No word should be a filler or reject word
   for (const word of words) {
+    if (FILLER_WORDS.has(word.toLowerCase())) return false;
     if (REJECT_WORDS.has(word.toLowerCase())) return false;
   }
 
-  // Must not contain common headline patterns
-  if (/\b(has|is|are|was|to|and|the|over|more|than|could|can|will)\b/i.test(trimmed)) return false;
-
-  // Should look like a proper noun (at least first word capitalized)
+  // Must look like a proper noun (capitalized first word, reasonable length)
   if (!/^[A-Z]/.test(words[0])) return false;
+
+  // Single-word names must be at least 3 characters
+  if (words.length === 1 && trimmed.length < 3) return false;
 
   return true;
 }
