@@ -7,7 +7,7 @@
    - Each entry has a verifiable source
    - Numbers are conservative (lower bound when ranges given)
 
-   Last updated: 2026-03-21
+   Last updated: 2026-03-22
    ============================================ */
 
 const CONFIRMED_AI_LOSSES = [
@@ -135,6 +135,15 @@ const CONFIRMED_AI_LOSSES = [
 
   // ──────────── 2025 ────────────
   {
+    company: 'Global banks',
+    jobs: 200000,
+    date: '2025-01',
+    description: 'Global banks to cut 200,000 jobs as AI revolution accelerates: Bloomberg Intelligence',
+    sector: 'Technology',
+    source: 'Outsource Accelerator',
+    sourceUrl: 'https://news.google.com/rss/articles/CBMifkFVX3lxTE1XMGdmazVjdFNzTFhZLW1RUVByVGwtdnZMUkQ2MVo2TVdCQ214blRKcHl2bHpudzViYW5RX3Bvc1pBSE9YdUg1eW9jSmVsWXV0dTdjSk40S0ZjZkdWbjB3TGR1b2FsWjJIQU43V1F5cjk3aWY4RDhHUkZ5bEszdw?oc=5',
+  },
+  {
     company: 'Workday',
     jobs: 1750,
     date: '2025-02',
@@ -142,6 +151,15 @@ const CONFIRMED_AI_LOSSES = [
     sector: 'Technology',
     source: 'Programs.com',
     sourceUrl: 'https://programs.com/resources/ai-layoffs/',
+  },
+  {
+    company: 'Salesforce',
+    jobs: 1000,
+    date: '2025-02',
+    description: 'Salesforce Laying Off 1,000 Employees in AI-Driven Restructuring',
+    sector: 'Technology',
+    source: 'Newsweek',
+    sourceUrl: 'https://news.google.com/rss/articles/CBMilwFBVV95cUxQdnBnN3VUWlEzYU5qR1NJS1BiekVxWlBDbU5jUElad0VpWmlRdFFxRUs3R0NuMWZSUDlMYWRqRTJfTTgxeDNGMUt2VTk3N0lxRnd0NHZqV0h4VzhaZ0JVWVZYel94QTlhZDZkUndQUmI4ZHBWcHNZRjJBSXBMLUg5R1pMMEc0WVF5eEN3ZEw2SkUzcUpaa0Uw?oc=5',
   },
   {
     company: 'UPS',
@@ -162,6 +180,15 @@ const CONFIRMED_AI_LOSSES = [
     sourceUrl: 'https://www.cnbc.com/2025/05/07/crowdstrike-announces-5percent-job-cuts-says-ai-reshaping-every-industry.html',
   },
   {
+    company: 'GPS Maker TomTom',
+    jobs: 300,
+    date: '2025-06',
+    description: 'GPS Maker TomTom to Cut 300 Jobs as It Embraces AI',
+    sector: 'Technology',
+    source: 'PYMNTS.com',
+    sourceUrl: 'https://news.google.com/rss/articles/CBMikwFBVV95cUxPcmFyd0MwU3BDVkZnVFFTX05BSnNVLXQ2LXducDltQ1NZNUJtSVRLU2FrNXdZVE1IeDVLbmR3cC1QbFVja0pOSWstM0taVDZqU00tVG5CVWdoekhDS2NZY3ZTcVdqQS1TX2IwdE5fTGlnc3ZRbUFVQ05scUNkeE4wTkFiazJYM0V3NERmemhieHhkY0U?oc=5',
+  },
+  {
     company: 'Microsoft',
     jobs: 9000,
     date: '2025-07',
@@ -169,6 +196,33 @@ const CONFIRMED_AI_LOSSES = [
     sector: 'Technology',
     source: 'Fortune',
     sourceUrl: 'https://fortune.com/2025/07/02/microsoft-layoffs-9000-ai/',
+  },
+  {
+    company: 'Glassdoor and Indeed',
+    jobs: 1300,
+    date: '2025-07',
+    description: 'Glassdoor and Indeed lay off 1,300 employees, say they must adapt as AI is changing the world',
+    sector: 'Technology',
+    source: 'India Today',
+    sourceUrl: 'https://news.google.com/rss/articles/CBMi1AFBVV95cUxObklqQW5VckZMelF3RGJDYXNkYVlpaXlLa01zZ3k1VU5aSk9uMmZCMTN4VE9HeVRTREk4RW8yOEY0OTZBS0tkWWJkQXZ3ZFhSZFpIMUxIbGZzMXhtVkpma3duVTJqSE5FcU05SEVmN1BEaFRCM29id04tR1pRaS1QU3BzdjZLT1FhZTRUcG51VDE4QnpSVjQ0R3dzNE5PQ3kxdHZBNlUwalc1QnRjZ1ZOb0M0S3dLbE0zMUliUE51NEZMVDcyWWdEMnFvcEU5YkpSRGptMdIB2gFBVV95cUxOV0NRNHdzRGVwVkFzaURfNFZIbUhXS2xPOXlnZ3ZxYTMtbW91WmxsREhFQ1dOdWRqcjBFY1dLM1FPcGNUb2dlZ1pzUkFaeEFWZUZGdFl6OEplLUZPbUxfaGh4R3p6ZTJ4b1huNDlTbUVWSkVhTmJEYkd6MlNfS0Y2SHY4MjBiWDBVb0xRSUZTRXBOWXkyNDM1NWphV1hINE1CRnZqMEFna0FDeklEc3FKYllEbndwUC1KM0NZb3Vqa2dDNkg0ckR0dGxhbHdlckNtam5SUEJPWElhdw?oc=5',
+  },
+  {
+    company: 'Big Tech has',
+    jobs: 100000,
+    date: '2025-08',
+    description: 'Big Tech has cut over 100,000 jobs this year — and the AI revolution is just getting started',
+    sector: 'Technology',
+    source: 'New York Post',
+    sourceUrl: 'https://news.google.com/rss/articles/CBMixwFBVV95cUxPaDRlbzkxNHhLNi1LQ0syb0o1VWNuQnNOWDZIbE1SNFhYVmloSHlXYjRUcGtuN0NfbFNPcjQ2SXhGTFN2eGpuMWc2d3VvMUxFSmxFSnVrU2xMSHhLTlFhSkhEZnczbHE5YW1aR2M2ajdBOF9BUWJ2RzZmYUJwelJCMEVxTzJXTDFqaEVManRMQWxfNDR5Z0F0XzJjajFUVVlUR2dCQ0ZtWm9femJKakxHb3BVbmdqSFNKN3NzeFBOZldjb3Vnb3dR?oc=5',
+  },
+  {
+    company: 'Atlassian',
+    jobs: 150,
+    date: '2025-08',
+    description: 'Atlassian lays off 150 employees: AI takes over tasks',
+    sector: 'Technology',
+    source: 'Techzine Global',
+    sourceUrl: 'https://news.google.com/rss/articles/CBMinAFBVV95cUxPakRXcEJrekpfQWFWM2dsbzZzQ05wYlRJcmxTeDRQYjktdFJjZDB2dE5FcVpaVllTNDBMYkxNcUwzMS1NTUlnOW85WXY4cEF1em9TaU5TemdoOE85emdzYkE3RnNRNF9kQTBXSmxMaDBuak9rd1dMdjd5R1N3V3dFd0N1OTJqbUNfYW5SMFRlMTE3MVBwNy1BTjNvYm4?oc=5',
   },
   {
     company: 'Fiverr',
@@ -207,6 +261,15 @@ const CONFIRMED_AI_LOSSES = [
     sourceUrl: 'https://www.cnbc.com/2025/09/29/lufthansa-to-cut-4000-jobs-turns-to-ai-to-boost-efficiency-.html',
   },
   {
+    company: 'Bosch Plans',
+    jobs: 13000,
+    date: '2025-09',
+    description: 'Bosch Plans to Cut 13,000 Jobs Amid AI Push',
+    sector: 'Technology',
+    source: 'WSJ',
+    sourceUrl: 'https://news.google.com/rss/articles/CBMikANBVV95cUxQZjNHVVoxeG9ZeVJKQ2FUT05KZEZNaFFldnBRUngwZVhvSFBoRnotc3BwdldaMkpUMGhXcGo2ZnJsRG93bGl1TEVHNHRmc1NBb0tRLXFWdnQ4NXhjeGh3N3p3cWtZZFhoV0JSQnFTZ3Q5X0tKaDVYM2Zud2dDWnh0dkdMQUtUN0M4RVhiZVJJMEZOaU1DWFJjb0ljbzFPZ2NUaEsyQU1Oc0FwV05XdVFhWjhrZHhDeWp2T2JqcllOQnhZRnY0QllhV1psd3RuamZqNFFZd0hvaGdVSFM5bjA5Z0JmUnVNSXBGemZXa29IRU1GNmhxT2liRklFQjY3OWxlb0RickpMd0EwSHM4blFISzVLUGZHUmxwMWtjSncxOUtoVFNyYUJsN0FhZDBfSE9wLUpRaEwxS2hFbWhoaUxjaHc0S0VwN0FXWmdkbWt4aFp5YkZra1htWG5OYnYtRlNyZzZHZWVBYXZyZUNvQTlfT0RqZ1lwQ2V5RlI3cGpiS0hEWjJmNk9MYUhZYXlmbGhm?oc=5',
+  },
+  {
     company: 'Chegg',
     jobs: 388,
     date: '2025-10',
@@ -243,6 +306,33 @@ const CONFIRMED_AI_LOSSES = [
     sourceUrl: 'https://finance.yahoo.com/news/c-h-robinson-improved-profitability-130951444.html',
   },
   {
+    company: 'Meta',
+    jobs: 600,
+    date: '2025-10',
+    description: 'Meta slashes 600 jobs in AI division',
+    sector: 'Technology',
+    source: 'capacityglobal.com',
+    sourceUrl: 'https://news.google.com/rss/articles/CBMiXkFVX3lxTE9zUXpoQUpBaUpoVUE0a1dkdFNJSUIxM2EyVGtUM3MyTjV0RzJqT2ZKSll5VEs2T1Y0MWpDNWstdjRweWZrVzVtMTlhc01qUTdxZE9vME1YZlVncE8yLWc?oc=5',
+  },
+  {
+    company: 'Computer maker HP',
+    jobs: 6000,
+    date: '2025-11',
+    description: 'Computer maker HP to cut up to 6,000 jobs by 2028 as it turns to AI',
+    sector: 'Technology',
+    source: 'The Guardian',
+    sourceUrl: 'https://news.google.com/rss/articles/CBMivAFBVV95cUxOc3kxanc1NGhBVk9NU1N1QzNtTm9OeW1aUEVWQWlQQjlldlJyUmdhWUNmbHg2NlZWd0dwVllTSXRval9YN24tSVpDNDhHbE5ody0yeVJoVjFva3gtSnRzX19wclZlc3JiUDFsOGV4OG96M1BsaXp2Sm9vdFVTQXQ2UmkyV1RZRWdvMWRnTThkWS02M1BZMDVZYmVaaTB2VlVBZENuejAyeXdVVV84ZFdrWmJOQ3p1cXB2ZVEtSw?oc=5',
+  },
+  {
+    company: 'IBM',
+    jobs: 2700,
+    date: '2025-11',
+    description: 'IBM Layoffs 2025: Tech Giant to Cut Around 2,700 Jobs Amid AI Restructuring; Over 1 Lakh Firing in IT Industry',
+    sector: 'Technology',
+    source: 'Goodreturns',
+    sourceUrl: 'https://news.google.com/rss/articles/CBMi2AFBVV95cUxOeEc4UDVlRlBDZDZLNnExOEt2SEFSU2Y4UmZBMjVvYWdyUlc2WDhUSGlDWFI3SXkzWGN2bFRiZWxNWUFCTUotMzBlWjh0QVRwQU9kSXRJMUhLWkctYWJ0cldLZjlUczV2ZDNldkpuaG56WTAwaldwaW5IczFfZ1VJUEdpT1NkaDJETmRoLUtNeU1DSlVGVGRONnF3R20xcmJiWGxuR3FYV050T1FibHRBUVRNVlFGQ1FjZ0ZlSVJINThnOTBkdDI2T3VRelU4VEJ6NWY1S2dISTM?oc=5',
+  },
+  {
     company: 'Omnicom',
     jobs: 4000,
     date: '2025-12',
@@ -266,7 +356,7 @@ const CONFIRMED_AI_LOSSES = [
     company: 'Baker McKenzie',
     jobs: 600,
     date: '2026-01',
-    description: 'One of the world\'s largest law firms announced cuts as part of shift toward AI.',
+    description: 'One of the world\\',
     sector: 'Legal',
     source: 'Digital Journal',
     sourceUrl: 'https://www.digitaljournal.com/business/job-losses-due-to-ai-are-mounting-up-in-2026/article',
@@ -290,13 +380,49 @@ const CONFIRMED_AI_LOSSES = [
     sourceUrl: 'https://www.cnbc.com/2026/01/27/pinterest-layoffs-stock-ai.html',
   },
   {
+    company: 'Amazon',
+    jobs: 16000,
+    date: '2026-01',
+    description: 'Amazon axes 16,000 jobs as it pushes AI and efficiency',
+    sector: 'Technology',
+    source: 'Reuters',
+    sourceUrl: 'https://news.google.com/rss/articles/CBMiqgFBVV95cUxQYzNEb1ZIQjc2dUkxU1VwZFlLNG5TVEROWmxORFU5M0Q0RTNieUc0aU9JZUhsUEtnTXdnTW1mZWlhUjlVaXJPdEVPcEE5X3FaeTJNVzYwakx4N1hlZ2hXN0Zwc1NDaE9sV01HbDZGNXBVYXBxQnh6RGRTUkY5N3pyaFV1YllsanllY3ktRU05YW9vUG9ad05teTROYUFmR3JjRFNWVEh2RUtlUQ?oc=5',
+  },
+  {
     company: 'Ocado',
     jobs: 1000,
     date: '2026-02',
-    description: 'Cut 5% of workforce. AI helping competitors replicate Ocado\'s warehouse automation faster and more cheaply, eroding competitive advantage.',
+    description: 'Cut 5% of workforce. AI helping competitors replicate Ocado\\',
     sector: 'Retail',
     source: 'Bloomberg',
     sourceUrl: 'https://www.bloomberg.com/news/articles/2026-02-26/ocado-to-cut-jobs-as-its-automated-warehouse-rollout-stutters',
+  },
+  {
+    company: 'Telstra joint venture',
+    jobs: 200,
+    date: '2026-02',
+    description: 'Telstra joint venture to axe more than 200 jobs amid AI rollout',
+    sector: 'Technology',
+    source: 'The Guardian',
+    sourceUrl: 'https://news.google.com/rss/articles/CBMikAFBVV95cUxPakVSR3JZSTF5cVBwaTVyNFJXbUI3czI5cGFvajlMNDNBVXNyUlNfS05jaVY2eXRLOUhvQzB4VTV2Z0hLRUNiUEZHOS1nYU4yMGZnb2phMTZaeTBDRXE4MklNS2VGRHRId0NuUDY3SldLdGU3QkdyQnBNamluT0ZHNmdQUElocm4zWWhCRDhvaWc?oc=5',
+  },
+  {
+    company: 'Jack Dorsey',
+    jobs: 40,
+    date: '2026-02',
+    description: 'Jack Dorsey lays off 40% of Block because of AI and sees most firms making similar cuts in next year',
+    sector: 'Technology',
+    source: 'Fortune',
+    sourceUrl: 'https://news.google.com/rss/articles/CBMijwFBVV95cUxPbWdXMWQ0LUk5dGJ1S1lPalh1ekhtcXZ6cWVoYWZvbVhXMnM5UWc2V05uTV9LMk5DNzR5VjhmU3lsNWZFalZPT2VmRlEtMHNNRVZfNVNpM2dqSmFteUV0WFVMTVpsdXlWRVpadG1FQ2RKVVNtNVF0cDlOajQxZnhUaHZhbzhpSzBRZlRLUVF3OA?oc=5',
+  },
+  {
+    company: 'LPL Financial latest',
+    jobs: 300,
+    date: '2026-02',
+    description: 'LPL Financial latest to cut jobs; about 300 employees laid off.',
+    sector: 'Technology',
+    source: 'InvestmentNews',
+    sourceUrl: 'https://news.google.com/rss/articles/CBMixAFBVV95cUxQcGY2ZlVkd0k2ZWdXOVB4cXhISld5ZFdQQnc4S01teWdMR2tRRjZnZWxNZy1sV1YtUTlvZ1dBOHNidVJYLVdDVmNuQ1NVVjNKa1lUMkRra1luak9jY3pzeW5RVXF4NHBNTWc3eU5ZaVBmdllHSThRTUVxeUtFYXBkMFJHb3NLYk11QklWTXUtRWVmQUFpY1dyZUVtQngyaFpQbXphaGdzVnlGZ1U0R1gxZGtyaVhPSG9pUG4xWDItX0VpWEdI?oc=5',
   },
   {
     company: 'Block (Square/Cash App)',
@@ -324,6 +450,33 @@ const CONFIRMED_AI_LOSSES = [
     sector: 'Cryptocurrency',
     source: 'CNBC',
     sourceUrl: 'https://www.cnbc.com/2026/03/19/crypto-com-layoffs-12percent-ai-job-loss.html',
+  },
+  {
+    company: 'Meta',
+    jobs: 15800,
+    date: '2026-03',
+    description: 'Meta Layoffs 2026: AI Push Could Cut Up to 15,800 Jobs, Report Says',
+    sector: 'Technology',
+    source: 'Saptashwa TV',
+    sourceUrl: 'https://news.google.com/rss/articles/CBMirAFBVV95cUxPa0lWSk9nb3hqUHliNXJHd1FQUTUxeUY5dXJ5blUweTkzcHJFd2lsM3BVcTVFcWVUaUxrcnBxMjdVa25xeTExRVdvMHNPa053R0Z5aUZpcS1DbnI2WTRJUXNXT0d2VVBmNHNuN3hBN3FmV0d1NEZlZkRFVWNkdnA4cWhBM2wtazJCRy1WSk5tMG9lT2tPQ0RncTR3cUJ6NmNubFVDZUZ4MHJpemE5?oc=5',
+  },
+  {
+    company: 'AI',
+    jobs: 35000,
+    date: '2026-03',
+    description: 'AI layoffs 2026: From Oracle to Amazon, these tech companies cut over 35,000 jobs so far this year',
+    sector: 'Technology',
+    source: 'MSN',
+    sourceUrl: 'https://news.google.com/rss/articles/CBMitANBVV95cUxNeFVaem1jS0M5ejhTendiOW1VVC1xRjVGc29aTFVISmdUQ0tfUGk2UzlWV0tlX19SNmpmSXdOQkxlLUtTZFJTVHdWc2xpc3k0N3RTVGZXay1Kc2JDNldMTWtUMFhuamt2cWlaT2c1bXdvaEh3V3RueF8wbDBtemZzSC1mTUJJQS1SWEhjMTVDUzJIRE1HRlJsWXYyd1JKT0haZGNpVjFJZ1V1bkVTemx3X1cya191UUpaUDg3MlBHUXhzRTdUQ1ZtLVgtTG9YbkdDNE5vcHdYUW5IbUJyQ2N3TEhLZ3N2MHNnZDN3eFRWeUxYU2lXakxZcnEtdkFSeGwzUDVoRXRNTG03ekdTUjR2WWFSNUdrOG5hckVvWmQtWmdQMGVDZ29odzlUSTJjeXh0eENvTXBUZE9NTmk0QXhDOC1kTFZKZFVvOVNkX2t2WVByMC05SUJrSW1ockU4UTZyRlBKREphRXdMVWc3M0hjejhRSDFLWEkzcGJGOGgxLWVlU3N1anVwbHNtNXNDMFluYXVScnM4MEtvZlFaM2VsWUNmU2VLVnBaWUhYWEFpVnByOGpj?oc=5',
+  },
+  {
+    company: 'Altassian',
+    jobs: 10,
+    date: '2026-03',
+    description: 'Altassian cuts 10% workforce amid AI push',
+    sector: 'Technology',
+    source: 'The American Bazaar',
+    sourceUrl: 'https://news.google.com/rss/articles/CBMilwFBVV95cUxQZjhiMk90S3JrcF9Rb0t3T0MtSlJUN1NjcDl2UDRaVkZPS29BTEpnNW1STjBzUFFyODJRZV9HQXJDTVdSbGh2UmtvMWZnWWM2QzQxaTUzOHk4YzExSHFXVlRtcnpFSGpnNTAxN1Y2ZUN5eHpObUY1NG1aYmZlN092dFk5a04xckJYZFBHbndIam03S1Z6RXVF?oc=5',
   },
 ];
 
