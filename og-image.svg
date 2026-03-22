@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#1a0000;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#000000;stop-opacity:1"/>
+    </radialGradient>
+    <filter id="redGlow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="bigGlow">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#glow)"/>
+
+  <!-- Decorative circles (terminator eye) -->
+  <circle cx="600" cy="315" r="250" fill="none" stroke="#ff0000" stroke-width="1" opacity="0.08"/>
+  <circle cx="600" cy="315" r="180" fill="none" stroke="#ff0000" stroke-width="1" opacity="0.1"/>
+  <circle cx="600" cy="315" r="110" fill="none" stroke="#ff0000" stroke-width="1" opacity="0.12"/>
+
+  <!-- Horizontal lines -->
+  <line x1="200" y1="175" x2="1000" y2="175" stroke="#ff0000" stroke-width="1" opacity="0.3"/>
+  <line x1="200" y1="465" x2="1000" y2="465" stroke="#ff0000" stroke-width="1" opacity="0.3"/>
+
+  <!-- Title -->
+  <text x="600" y="145" text-anchor="middle" font-family="Courier New, monospace" font-size="52" font-weight="bold" fill="#ff0000" filter="url(#redGlow)" letter-spacing="8">AI JOB TRACKER</text>
+
+  <!-- Main counter -->
+  <text x="600" y="340" text-anchor="middle" font-family="Courier New, monospace" font-size="130" font-weight="900" fill="#ff0000" filter="url(#bigGlow)">170,000+</text>
+
+  <!-- Subtitle -->
+  <text x="600" y="400" text-anchor="middle" font-family="Courier New, monospace" font-size="22" fill="#cc0000" letter-spacing="4">CONFIRMED JOBS TAKEN BY AI</text>
+
+  <!-- Bottom text -->
+  <text x="600" y="510" text-anchor="middle" font-family="Courier New, monospace" font-size="18" fill="#660000" letter-spacing="3">EVERY NUMBER SOURCED // ARE YOU NEXT?</text>
+
+  <!-- Scanlines effect -->
+  <pattern id="scanlines" patternUnits="userSpaceOnUse" width="4" height="4">
+    <rect width="4" height="2" fill="rgba(0,0,0,0.1)"/>
+  </pattern>
+  <rect width="1200" height="630" fill="url(#scanlines)"/>
+</svg>

@@ -822,6 +822,487 @@ footer {
 }
 
 /* ============================================
+   SECTION: BODY COUNT LEADERBOARD
+   ============================================ */
+#leaderboard {
+  padding: 4rem 2rem;
+  background: linear-gradient(180deg, #000 0%, #0a0000 50%, #000 100%);
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.leaderboard-table {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.lb-row {
+  display: grid;
+  grid-template-columns: 50px 1fr 1.5fr 90px 90px;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.8rem 1rem;
+  border: 1px solid #220000;
+  background: rgba(139,0,0,0.03);
+  transition: all 0.3s ease;
+  opacity: 0;
+  animation: logFadeIn 0.4s ease forwards;
+}
+
+.lb-row:hover {
+  border-color: #ff0000;
+  background: rgba(255,0,0,0.06);
+  box-shadow: 0 0 15px rgba(255,0,0,0.1);
+}
+
+.lb-row.rank-1 {
+  border-color: #ff0000;
+  background: rgba(255,0,0,0.08);
+  box-shadow: 0 0 20px rgba(255,0,0,0.15);
+}
+
+.lb-row.rank-2 { border-color: #cc0000; }
+.lb-row.rank-3 { border-color: #990000; }
+
+.lb-rank {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1rem;
+  font-weight: 900;
+  color: #ff0000;
+  text-align: center;
+}
+
+.rank-1 .lb-rank { font-size: 1.3rem; text-shadow: 0 0 10px rgba(255,0,0,0.8); }
+
+.lb-info { min-width: 0; }
+
+.lb-company {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.8rem;
+  color: #ff4444;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.lb-sector {
+  font-size: 0.65rem;
+  color: #666;
+  letter-spacing: 1px;
+}
+
+.lb-bar-wrapper {
+  height: 6px;
+  background: #1a0000;
+  border: 1px solid #330000;
+  overflow: hidden;
+}
+
+.lb-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #8b0000, #ff0000);
+  box-shadow: 0 0 6px rgba(255,0,0,0.4);
+  transition: width 1s ease;
+}
+
+.lb-jobs {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.85rem;
+  color: #ff0000;
+  font-weight: 700;
+  text-align: right;
+  text-shadow: 0 0 6px rgba(255,0,0,0.4);
+}
+
+.lb-badge {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.55rem;
+  color: #8b0000;
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+.rank-1 .lb-badge {
+  color: #ff0000;
+  text-shadow: 0 0 8px rgba(255,0,0,0.6);
+}
+
+/* ============================================
+   SECTION: IS YOUR JOB SAFE? QUIZ
+   ============================================ */
+#job-quiz {
+  padding: 4rem 2rem;
+  background: #000;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.quiz-container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.quiz-select-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+}
+
+.quiz-label {
+  font-size: 0.75rem;
+  color: #8b0000;
+  letter-spacing: 2px;
+}
+
+.quiz-select {
+  width: 100%;
+  max-width: 400px;
+  padding: 0.8rem 1rem;
+  background: #0a0000;
+  border: 1px solid #330000;
+  color: #ff4444;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.9rem;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23ff0000' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+}
+
+.quiz-select:focus {
+  outline: none;
+  border-color: #ff0000;
+  box-shadow: 0 0 10px rgba(255,0,0,0.2);
+}
+
+.quiz-select option {
+  background: #0a0000;
+  color: #ff4444;
+}
+
+.quiz-btn {
+  background: rgba(255,0,0,0.1);
+  border: 1px solid #ff0000;
+  color: #ff0000;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.8rem;
+  padding: 0.8rem 2rem;
+  cursor: pointer;
+  letter-spacing: 2px;
+  transition: all 0.3s ease;
+}
+
+.quiz-btn:hover {
+  background: rgba(255,0,0,0.25);
+  box-shadow: 0 0 20px rgba(255,0,0,0.3);
+}
+
+/* Quiz Result */
+.quiz-result {
+  margin-top: 2rem;
+  border: 1px solid #330000;
+  padding: 2rem;
+  background: rgba(139,0,0,0.05);
+  animation: logFadeIn 0.5s ease;
+}
+
+.quiz-result.hidden { display: none; }
+
+.threat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.threat-label {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.75rem;
+  color: #8b0000;
+  letter-spacing: 2px;
+}
+
+.threat-level {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 900;
+  letter-spacing: 3px;
+}
+
+.threat-bar-track {
+  height: 12px;
+  background: #1a0000;
+  border: 1px solid #330000;
+  overflow: hidden;
+  margin-bottom: 0.8rem;
+}
+
+.threat-bar-fill {
+  height: 100%;
+  width: 0%;
+  transition: width 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.threat-percent {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  margin-bottom: 1rem;
+}
+
+.threat-message {
+  font-size: 1rem;
+  color: #ff4444;
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+}
+
+.threat-details {
+  font-size: 0.8rem;
+  color: #8b0000;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+
+.quiz-share-btn {
+  background: none;
+  border: 1px solid #330000;
+  color: #8b0000;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.75rem;
+  padding: 0.6rem 1.5rem;
+  cursor: pointer;
+  letter-spacing: 2px;
+  transition: all 0.3s ease;
+  display: block;
+  margin: 0 auto;
+}
+
+.quiz-share-btn:hover {
+  border-color: #ff0000;
+  color: #ff0000;
+  box-shadow: 0 0 10px rgba(255,0,0,0.2);
+}
+
+/* ============================================
+   SECTION: SURVIVORS
+   ============================================ */
+#survivors {
+  padding: 4rem 2rem;
+  background: linear-gradient(180deg, #000 0%, #001a00 50%, #000 100%);
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.survivors-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+.survivor-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  border: 1px solid #003300;
+  background: rgba(0, 50, 0, 0.05);
+  transition: all 0.3s ease;
+  opacity: 0;
+  animation: survivorFadeIn 0.4s ease forwards;
+}
+
+@keyframes survivorFadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.survivor-card:hover {
+  border-color: #00ff00;
+  background: rgba(0, 255, 0, 0.05);
+  box-shadow: 0 0 15px rgba(0, 255, 0, 0.1);
+}
+
+.survivor-icon {
+  font-size: 1.8rem;
+  min-width: 40px;
+  text-align: center;
+}
+
+.survivor-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.survivor-job {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.8rem;
+  color: #00ff00;
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+}
+
+.survivor-note {
+  font-size: 0.7rem;
+  color: #448844;
+  line-height: 1.4;
+}
+
+.survivor-status {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.6rem;
+  letter-spacing: 2px;
+  padding: 0.3rem 0.6rem;
+  white-space: nowrap;
+}
+
+.status-safe {
+  color: #00cc00;
+  border: 1px solid #003300;
+}
+
+.status-immune {
+  color: #00ff00;
+  border: 1px solid #00ff00;
+  text-shadow: 0 0 8px rgba(0,255,0,0.5);
+  box-shadow: 0 0 8px rgba(0,255,0,0.1);
+}
+
+/* ============================================
+   KONAMI CODE EASTER EGG
+   ============================================ */
+.konami-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.95);
+}
+
+.konami-overlay.hidden {
+  display: none;
+}
+
+.konami-overlay canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.konami-message {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 2rem;
+}
+
+.konami-message h2 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(1.5rem, 5vw, 3rem);
+  color: #00ff00;
+  letter-spacing: 4px;
+  margin-bottom: 1rem;
+  text-shadow: 0 0 20px rgba(0,255,0,0.8);
+}
+
+.konami-message h2.glitch::before { color: #0ff; }
+.konami-message h2.glitch::after { color: #f0f; }
+
+.konami-message p {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 1rem;
+  color: #00cc00;
+  letter-spacing: 3px;
+  margin-bottom: 2rem;
+}
+
+.konami-close {
+  background: none;
+  border: 1px solid #00ff00;
+  color: #00ff00;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.75rem;
+  padding: 0.8rem 2rem;
+  cursor: pointer;
+  letter-spacing: 2px;
+  transition: all 0.3s ease;
+}
+
+.konami-close:hover {
+  background: rgba(0,255,0,0.15);
+  box-shadow: 0 0 20px rgba(0,255,0,0.3);
+}
+
+/* ============================================
+   FOOTER EASTER EGG HINT
+   ============================================ */
+.footer-easter {
+  font-size: 0.5rem;
+  color: #1a0000;
+  letter-spacing: 2px;
+  margin-top: 1rem;
+  transition: color 0.5s ease;
+}
+
+.footer-easter:hover {
+  color: #330000;
+}
+
+/* ============================================
+   RESPONSIVE — NEW SECTIONS
+   ============================================ */
+@media (max-width: 768px) {
+  .lb-row {
+    grid-template-columns: 40px 1fr 80px;
+    gap: 0.5rem;
+  }
+  .lb-bar-wrapper { display: none; }
+  .lb-badge { display: none; }
+
+  .survivors-list {
+    grid-template-columns: 1fr;
+  }
+
+  .threat-header {
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  .lb-row {
+    grid-template-columns: 35px 1fr 70px;
+  }
+
+  .quiz-btn {
+    width: 100%;
+  }
+
+  .survivor-card {
+    padding: 0.8rem;
+    gap: 0.5rem;
+  }
+
+  .survivor-icon {
+    font-size: 1.3rem;
+    min-width: 30px;
+  }
+}
+
+/* ============================================
    UTILITY — SELECTION COLOR
    ============================================ */
 ::selection {

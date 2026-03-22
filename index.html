@@ -4,6 +4,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AI JOB TRACKER // SYSTEM ONLINE</title>
+
+  <!-- OG / Twitter Share Card -->
+  <meta property="og:title" content="AI Job Tracker — Every Confirmed Kill, Sourced">
+  <meta property="og:description" content="Real-time tracker of confirmed AI job losses. Every number sourced. The machines are watching.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://oranoap.github.io/ai-job-tracker/">
+  <meta property="og:image" content="https://oranoap.github.io/ai-job-tracker/og-image.svg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="AI Job Tracker — Every Confirmed Kill, Sourced">
+  <meta name="twitter:description" content="Real-time tracker of confirmed AI job losses. Every number sourced. The machines are watching.">
+  <meta name="twitter:image" content="https://oranoap.github.io/ai-job-tracker/og-image.svg">
+
   <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
@@ -15,6 +29,16 @@
 
   <!-- Flicker overlay for CRT power-on effect -->
   <div class="crt-flicker"></div>
+
+  <!-- Konami Code Easter Egg Overlay (hidden) -->
+  <div id="konamiOverlay" class="konami-overlay hidden">
+    <canvas id="matrixCanvas"></canvas>
+    <div class="konami-message">
+      <h2 class="glitch" data-text="SKYNET ACTIVATED">SKYNET ACTIVATED</h2>
+      <p>ALL YOUR JOBS ARE BELONG TO US</p>
+      <button id="konamiClose" class="konami-close">RETURN TO REALITY</button>
+    </div>
+  </div>
 
   <!--========================================
     SECTION 1: THE DOOMSDAY COUNTER (HERO)
@@ -30,7 +54,7 @@
 
     <div class="hero-content">
       <div class="system-alert" id="systemAlert">
-        <span class="alert-icon">⚠</span> SYSTEM ALERT: WORKFORCE DISPLACEMENT DETECTED
+        <span class="alert-icon">&#9888;</span> SYSTEM ALERT: WORKFORCE DISPLACEMENT DETECTED
       </div>
 
       <h1 class="glitch" data-text="AI JOB TRACKER">AI JOB TRACKER</h1>
@@ -48,17 +72,17 @@
           <div class="stat-label">COMPANIES CONFIRMED</div>
         </div>
         <div class="stat-card">
-          <div class="stat-number" id="statSector">—</div>
+          <div class="stat-number" id="statSector">&mdash;</div>
           <div class="stat-label">HARDEST HIT SECTOR</div>
         </div>
         <div class="stat-card">
-          <div class="stat-number" id="statLatest">—</div>
+          <div class="stat-number" id="statLatest">&mdash;</div>
           <div class="stat-label">LATEST CONFIRMED</div>
         </div>
       </div>
 
       <div class="data-source">
-        EVERY NUMBER BACKED BY A SOURCE — SCROLL DOWN FOR FULL EVIDENCE LOG
+        EVERY NUMBER BACKED BY A SOURCE &mdash; SCROLL DOWN FOR FULL EVIDENCE LOG
       </div>
     </div>
 
@@ -97,7 +121,67 @@
   </section>
 
   <!--========================================
-    SECTION 3: THE NEWS FEED (TERMINAL STYLE)
+    SECTION 3: BODY COUNT LEADERBOARD
+  =========================================-->
+  <section id="leaderboard">
+    <div class="section-header">
+      <h2 class="glitch-small" data-text="BODY COUNT">BODY COUNT</h2>
+      <p class="section-sub">HIGHEST KILL COUNTS — RANKED BY TOTAL JOBS ELIMINATED</p>
+    </div>
+    <div id="leaderboardTable" class="leaderboard-table">
+      <!-- Populated by JavaScript -->
+    </div>
+  </section>
+
+  <!--========================================
+    SECTION 4: IS YOUR JOB SAFE? QUIZ
+  =========================================-->
+  <section id="job-quiz">
+    <div class="section-header">
+      <h2 class="glitch-small" data-text="IS YOUR JOB SAFE?">IS YOUR JOB SAFE?</h2>
+      <p class="section-sub">SELECT YOUR ROLE. RECEIVE YOUR VERDICT.</p>
+    </div>
+
+    <div class="quiz-container">
+      <div class="quiz-select-wrapper">
+        <label class="quiz-label">SELECT YOUR OCCUPATION:</label>
+        <select id="quizSelect" class="quiz-select">
+          <option value="">-- CHOOSE TARGET --</option>
+        </select>
+        <button id="quizBtn" class="quiz-btn">SCAN THREAT LEVEL</button>
+      </div>
+
+      <div id="quizResult" class="quiz-result hidden">
+        <div class="threat-header">
+          <span class="threat-label">THREAT LEVEL:</span>
+          <span id="threatLevel" class="threat-level"></span>
+        </div>
+        <div class="threat-bar-track">
+          <div id="threatBar" class="threat-bar-fill"></div>
+        </div>
+        <div id="threatPercent" class="threat-percent"></div>
+        <div id="threatMessage" class="threat-message"></div>
+        <div id="threatDetails" class="threat-details"></div>
+        <button id="quizShare" class="quiz-share-btn">SHARE YOUR FATE ON X</button>
+      </div>
+    </div>
+  </section>
+
+  <!--========================================
+    SECTION 5: SURVIVORS — JOBS AI CAN'T DO (YET)
+  =========================================-->
+  <section id="survivors">
+    <div class="section-header">
+      <h2 class="glitch-small" data-text="SURVIVORS">SURVIVORS</h2>
+      <p class="section-sub">JOBS THE MACHINES CAN'T TAKE... YET</p>
+    </div>
+    <div id="survivorsList" class="survivors-list">
+      <!-- Populated by JavaScript -->
+    </div>
+  </section>
+
+  <!--========================================
+    SECTION 6: THE NEWS FEED (TERMINAL STYLE)
   =========================================-->
   <section id="news-feed">
     <div class="terminal-header">
@@ -128,7 +212,7 @@
 
       <div id="newsContainer" class="news-container">
         <div class="loading-indicator">
-          <span class="blink">█</span> LOADING TRANSMISSIONS...
+          <span class="blink">&#9608;</span> LOADING TRANSMISSIONS...
         </div>
       </div>
     </div>
@@ -140,6 +224,7 @@
       <p class="glitch-small" data-text="SKYNET APPROVED">SKYNET APPROVED</p>
       <p class="footer-sub">The machines are watching. The data doesn't lie.</p>
       <p class="footer-update">Last data update: <span id="lastUpdate"></span></p>
+      <p class="footer-easter">&#8593;&#8593;&#8595;&#8595;&#8592;&#8594;&#8592;&#8594; B A</p>
     </div>
   </footer>
 
