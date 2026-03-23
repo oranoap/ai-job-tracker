@@ -7,7 +7,7 @@
    - Each entry has a verifiable source
    - Numbers are conservative (lower bound when ranges given)
 
-   Last updated: 2026-03-22
+   Last updated: 2026-03-23
    ============================================ */
 
 const CONFIRMED_AI_LOSSES = [
@@ -338,7 +338,7 @@ const CONFIRMED_AI_LOSSES = [
     company: 'Baker McKenzie',
     jobs: 600,
     date: '2026-01',
-    description: 'One of the world\\',
+    description: 'One of the world\\\\',
     sector: 'Legal',
     source: 'Digital Journal',
     sourceUrl: 'https://www.digitaljournal.com/business/job-losses-due-to-ai-are-mounting-up-in-2026/article',
@@ -365,7 +365,7 @@ const CONFIRMED_AI_LOSSES = [
     company: 'Ocado',
     jobs: 1000,
     date: '2026-02',
-    description: 'Cut 5% of workforce. AI helping competitors replicate Ocado\\',
+    description: 'Cut 5% of workforce. AI helping competitors replicate Ocado\\\\',
     sector: 'Retail',
     source: 'Bloomberg',
     sourceUrl: 'https://www.bloomberg.com/news/articles/2026-02-26/ocado-to-cut-jobs-as-its-automated-warehouse-rollout-stutters',
