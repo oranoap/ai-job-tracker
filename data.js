@@ -7,7 +7,7 @@
    - Each entry has a verifiable source
    - Numbers are conservative (lower bound when ranges given)
 
-   Last updated: 2026-03-26
+   Last updated: 2026-03-30
    ============================================ */
 
 const CONFIRMED_AI_LOSSES = [
@@ -338,7 +338,7 @@ const CONFIRMED_AI_LOSSES = [
     company: 'Baker McKenzie',
     jobs: 600,
     date: '2026-01',
-    description: 'One of the world\\\\\\\\',
+    description: 'One of the world\\\\\\\\\\\\\\\\',
     sector: 'Legal',
     source: 'Digital Journal',
     sourceUrl: 'https://www.digitaljournal.com/business/job-losses-due-to-ai-are-mounting-up-in-2026/article',
@@ -365,7 +365,7 @@ const CONFIRMED_AI_LOSSES = [
     company: 'Ocado',
     jobs: 1000,
     date: '2026-02',
-    description: 'Cut 5% of workforce. AI helping competitors replicate Ocado\\\\\\\\',
+    description: 'Cut 5% of workforce. AI helping competitors replicate Ocado\\\\\\\\\\\\\\\\',
     sector: 'Retail',
     source: 'Bloomberg',
     sourceUrl: 'https://www.bloomberg.com/news/articles/2026-02-26/ocado-to-cut-jobs-as-its-automated-warehouse-rollout-stutters',
@@ -428,7 +428,7 @@ const CONFIRMED_AI_LOSSES = [
     company: 'Morgan Stanley',
     jobs: 2500,
     date: '2026-03',
-    description: 'Morgan Stanley cuts 2,500 jobs and the reason is not AI — here\'s what led to layoffs',
+    description: 'Morgan Stanley cuts 2,500 jobs and the reason is not AI — here\\',
     sector: 'Finance',
     source: 'MSN',
     sourceUrl: 'https://news.google.com/rss/articles/CBMiywFBVV95cUxPWU5rUk9NVVpCWXlkaEx6a0hWVm5IQ3ZYZlo2VEQ0V0xTcFBSOVVCTFo0Z0k5UTVpOFZLa3U5RzhtRXdYSVBocHF3SmlCclpjMVdIVGtFMTZWNDB3bzhOUlFxLVRweWtLelNtcXp0Wm1tc2wydEpqSkZCaXpKX1dFSm85SmNfZjJVLWFHU1g5WFRhelJLM0drU2M1UDJTSGtRZHJQYXhNLXJXb0NXcGUzUTZaQmpDWmdTMWlqaGFHYXdoakVTU3B0b3Vpdw?oc=5',
