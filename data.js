@@ -7,7 +7,7 @@
    - Each entry has a verifiable source
    - Numbers are conservative (lower bound when ranges given)
 
-   Last updated: 2026-03-30
+   Last updated: 2026-04-02
    ============================================ */
 
 const CONFIRMED_AI_LOSSES = [
@@ -338,7 +338,7 @@ const CONFIRMED_AI_LOSSES = [
     company: 'Baker McKenzie',
     jobs: 600,
     date: '2026-01',
-    description: 'One of the world\\\\\\\\\\\\\\\\',
+    description: 'One of the world\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\',
     sector: 'Legal',
     source: 'Digital Journal',
     sourceUrl: 'https://www.digitaljournal.com/business/job-losses-due-to-ai-are-mounting-up-in-2026/article',
@@ -365,7 +365,7 @@ const CONFIRMED_AI_LOSSES = [
     company: 'Ocado',
     jobs: 1000,
     date: '2026-02',
-    description: 'Cut 5% of workforce. AI helping competitors replicate Ocado\\\\\\\\\\\\\\\\',
+    description: 'Cut 5% of workforce. AI helping competitors replicate Ocado\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\',
     sector: 'Retail',
     source: 'Bloomberg',
     sourceUrl: 'https://www.bloomberg.com/news/articles/2026-02-26/ocado-to-cut-jobs-as-its-automated-warehouse-rollout-stutters',
@@ -428,10 +428,19 @@ const CONFIRMED_AI_LOSSES = [
     company: 'Morgan Stanley',
     jobs: 2500,
     date: '2026-03',
-    description: 'Morgan Stanley cuts 2,500 jobs and the reason is not AI — here\\',
+    description: 'Morgan Stanley cuts 2,500 jobs and the reason is not AI — here\\\\',
     sector: 'Finance',
     source: 'MSN',
     sourceUrl: 'https://news.google.com/rss/articles/CBMiywFBVV95cUxPWU5rUk9NVVpCWXlkaEx6a0hWVm5IQ3ZYZlo2VEQ0V0xTcFBSOVVCTFo0Z0k5UTVpOFZLa3U5RzhtRXdYSVBocHF3SmlCclpjMVdIVGtFMTZWNDB3bzhOUlFxLVRweWtLelNtcXp0Wm1tc2wydEpqSkZCaXpKX1dFSm85SmNfZjJVLWFHU1g5WFRhelJLM0drU2M1UDJTSGtRZHJQYXhNLXJXb0NXcGUzUTZaQmpDWmdTMWlqaGFHYXdoakVTU3B0b3Vpdw?oc=5',
+  },
+  {
+    company: 'Oracle',
+    jobs: 491,
+    date: '2026-04',
+    description: 'Oracle announces 491 job cuts in Washington amid AI-led restructuring',
+    sector: 'Technology',
+    source: 'ET HRSEA',
+    sourceUrl: 'https://news.google.com/rss/articles/CBMizAFBVV95cUxOZG9jV1FqUEhybTJfVXVraXhMQnJ0eFo4LWJoM2ZVaE42dlVQSWhlVXQ1MkdHQ1U1T1c0VE5JeFR3YkRUWVJJT0xGM0lzWlNyY2dHNVlxRGdhN25MOEktYmJ6YV9MS0xzSmdXSWpvS1V0UXhVNG9HVzRBdnBlZUVfMzZHX0tUOUdCTG5NVVlvUnV5UHZybWpseVBEa0RIS1V2amxtNTJjNkYwM01vc1N2VWxBZFhmd0xxVmVaUzlGVl9KRFcwSTNZUWdDZ23SAdIBQVVfeXFMTWN0Z0ZHSzIzblVsWFVYQ28yZnhfZHNlLVMwdjA1czkzeE9Tb280dE1qbXJvSkZ3V1VuWjYtazVYLU1hNkV1NEtIX2NqSHpNVWFYeXl1T0dGeGFKa2NUZlU5eGh6enNGTVp1UW9SbnJMb0JqbEpQVjVvblpDTTdZNWlkakFWaHJSMTlXZ0lpM0ZYaWljQjVJTjFjSGRRdVJDdlZZRWJNTVhQRmRjOUs1cW1sMEx6eVVuLWQ4YlpwUkZmdkJVeDhGalJtekNKUVFDdkdR?oc=5',
   },
 ];
 
