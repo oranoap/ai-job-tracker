@@ -7,7 +7,7 @@
    - Each entry has a verifiable source
    - Numbers are conservative (lower bound when ranges given)
 
-   Last updated: 2026-04-02
+   Last updated: 2026-04-06
    ============================================ */
 
 const CONFIRMED_AI_LOSSES = [
@@ -338,7 +338,7 @@ const CONFIRMED_AI_LOSSES = [
     company: 'Baker McKenzie',
     jobs: 600,
     date: '2026-01',
-    description: 'One of the world\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\',
+    description: 'One of the world\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\',
     sector: 'Legal',
     source: 'Digital Journal',
     sourceUrl: 'https://www.digitaljournal.com/business/job-losses-due-to-ai-are-mounting-up-in-2026/article',
@@ -365,7 +365,7 @@ const CONFIRMED_AI_LOSSES = [
     company: 'Ocado',
     jobs: 1000,
     date: '2026-02',
-    description: 'Cut 5% of workforce. AI helping competitors replicate Ocado\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\',
+    description: 'Cut 5% of workforce. AI helping competitors replicate Ocado\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\',
     sector: 'Retail',
     source: 'Bloomberg',
     sourceUrl: 'https://www.bloomberg.com/news/articles/2026-02-26/ocado-to-cut-jobs-as-its-automated-warehouse-rollout-stutters',
@@ -428,10 +428,19 @@ const CONFIRMED_AI_LOSSES = [
     company: 'Morgan Stanley',
     jobs: 2500,
     date: '2026-03',
-    description: 'Morgan Stanley cuts 2,500 jobs and the reason is not AI — here\\\\',
+    description: 'Morgan Stanley cuts 2,500 jobs and the reason is not AI — here\\\\\\\\',
     sector: 'Finance',
     source: 'MSN',
     sourceUrl: 'https://news.google.com/rss/articles/CBMiywFBVV95cUxPWU5rUk9NVVpCWXlkaEx6a0hWVm5IQ3ZYZlo2VEQ0V0xTcFBSOVVCTFo0Z0k5UTVpOFZLa3U5RzhtRXdYSVBocHF3SmlCclpjMVdIVGtFMTZWNDB3bzhOUlFxLVRweWtLelNtcXp0Wm1tc2wydEpqSkZCaXpKX1dFSm85SmNfZjJVLWFHU1g5WFRhelJLM0drU2M1UDJTSGtRZHJQYXhNLXJXb0NXcGUzUTZaQmpDWmdTMWlqaGFHYXdoakVTU3B0b3Vpdw?oc=5',
+  },
+  {
+    company: 'Sweeping',
+    jobs: 16000,
+    date: '2026-03',
+    description: 'Sweeping cuts at Meta could see 16,000 jobs lost as company pumps money into AI',
+    sector: 'Technology',
+    source: 'AOL.com',
+    sourceUrl: 'https://news.google.com/rss/articles/CBMifEFVX3lxTE11RENHb0xHc2Nvdl9ZUWlJQWk5Q2xiV1pQd2p2S2stMlo2VW91b3lQZERpTVpHc2ZSS3Y4NklqdVBKQ3BReFpKbWVtM1JuYlA3dzdlRl9leURYSno5ZVFxd2JKbTNZQ2JuQ0pUYUgtV2Q4NkRXQ0dYc0QzdmY?oc=5',
   },
   {
     company: 'Oracle',
