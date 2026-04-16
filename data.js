@@ -7,7 +7,7 @@
    - Each entry has a verifiable source
    - Numbers are conservative (lower bound when ranges given)
 
-   Last updated: 2026-04-13
+   Last updated: 2026-04-16
    ============================================ */
 
 const CONFIRMED_AI_LOSSES = [
@@ -338,7 +338,7 @@ const CONFIRMED_AI_LOSSES = [
     company: 'Baker McKenzie',
     jobs: 600,
     date: '2026-01',
-    description: 'One of the world\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\',
+    description: 'One of the world\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\',
     sector: 'Legal',
     source: 'Digital Journal',
     sourceUrl: 'https://www.digitaljournal.com/business/job-losses-due-to-ai-are-mounting-up-in-2026/article',
@@ -365,7 +365,7 @@ const CONFIRMED_AI_LOSSES = [
     company: 'Ocado',
     jobs: 1000,
     date: '2026-02',
-    description: 'Cut 5% of workforce. AI helping competitors replicate Ocado\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\',
+    description: 'Cut 5% of workforce. AI helping competitors replicate Ocado\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\',
     sector: 'Retail',
     source: 'Bloomberg',
     sourceUrl: 'https://www.bloomberg.com/news/articles/2026-02-26/ocado-to-cut-jobs-as-its-automated-warehouse-rollout-stutters',
@@ -428,7 +428,7 @@ const CONFIRMED_AI_LOSSES = [
     company: 'Morgan Stanley',
     jobs: 2500,
     date: '2026-03',
-    description: 'Morgan Stanley cuts 2,500 jobs and the reason is not AI — here\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\',
+    description: 'Morgan Stanley cuts 2,500 jobs and the reason is not AI — here\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\',
     sector: 'Finance',
     source: 'MSN',
     sourceUrl: 'https://news.google.com/rss/articles/CBMiywFBVV95cUxPWU5rUk9NVVpCWXlkaEx6a0hWVm5IQ3ZYZlo2VEQ0V0xTcFBSOVVCTFo0Z0k5UTVpOFZLa3U5RzhtRXdYSVBocHF3SmlCclpjMVdIVGtFMTZWNDB3bzhOUlFxLVRweWtLelNtcXp0Wm1tc2wydEpqSkZCaXpKX1dFSm85SmNfZjJVLWFHU1g5WFRhelJLM0drU2M1UDJTSGtRZHJQYXhNLXJXb0NXcGUzUTZaQmpDWmdTMWlqaGFHYXdoakVTU3B0b3Vpdw?oc=5',
@@ -450,6 +450,15 @@ const CONFIRMED_AI_LOSSES = [
     sector: 'Technology',
     source: 'ET HRSEA',
     sourceUrl: 'https://news.google.com/rss/articles/CBMizAFBVV95cUxOZG9jV1FqUEhybTJfVXVraXhMQnJ0eFo4LWJoM2ZVaE42dlVQSWhlVXQ1MkdHQ1U1T1c0VE5JeFR3YkRUWVJJT0xGM0lzWlNyY2dHNVlxRGdhN25MOEktYmJ6YV9MS0xzSmdXSWpvS1V0UXhVNG9HVzRBdnBlZUVfMzZHX0tUOUdCTG5NVVlvUnV5UHZybWpseVBEa0RIS1V2amxtNTJjNkYwM01vc1N2VWxBZFhmd0xxVmVaUzlGVl9KRFcwSTNZUWdDZ23SAdIBQVVfeXFMTWN0Z0ZHSzIzblVsWFVYQ28yZnhfZHNlLVMwdjA1czkzeE9Tb280dE1qbXJvSkZ3V1VuWjYtazVYLU1hNkV1NEtIX2NqSHpNVWFYeXl1T0dGeGFKa2NUZlU5eGh6enNGTVp1UW9SbnJMb0JqbEpQVjVvblpDTTdZNWlkakFWaHJSMTlXZ0lpM0ZYaWljQjVJTjFjSGRRdVJDdlZZRWJNTVhQRmRjOUs1cW1sMEx6eVVuLWQ4YlpwUkZmdkJVeDhGalJtekNKUVFDdkdR?oc=5',
+  },
+  {
+    company: 'Snap',
+    jobs: 1000,
+    date: '2026-04',
+    description: 'Snap to lay off 1,000 employees, cites AI and cost pressures behind job cuts',
+    sector: 'Technology',
+    source: 'The Indian Express',
+    sourceUrl: 'https://news.google.com/rss/articles/CBMitgFBVV95cUxPZklGenZJMUIxM2lMWnNzaEl4eU5uYTQ3ODlVb2lSWEtSUF8zemw2Q25oTlEzSmQtemF4LThWOGZReVVBdzRqUjZHOElLYUpKTXRxT3FaZ3hINGUyczhYQnk0cWxFVDRTSVRBU0ZmbUYwRlZjTTBpRW5fUUF6TmFqaGFHSHYtRnNlMUM4VmpvSmpYNi1aOEtCdDdIcmtDbzI5RndsaVBJN3E4TmR6YVdqa01nUXVmd9IBvAFBVV95cUxQV1JPYkFYRHJQc05DYm9TT2xGV1plT1p2dnFrNWZkQVk5bDhfTDdsdDJpaURVM0tySjE1M2VoVlN4VEoyX0ExVkdNX0t1a0hwRk5admNfT2JiV09qV1NnT19EZXBCOFdHUDlDTnFVUExLNHVYZWdNOUZaamJOSm42TlVWbWU4Y05qMGlHMXpUZi1pNzI0LWo1TlQ4YWxGZVNTWFhVWFNWdnpoSEY1NFJrNUkzYXd3cjVsUVZPMg?oc=5',
   },
 ];
 
