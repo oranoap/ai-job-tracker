@@ -50,7 +50,7 @@ function initCounter() {
   // Footer update date
   const lastUpdate = document.getElementById('lastUpdate');
   if (lastUpdate) {
-    lastUpdate.textContent = '2026-05-28';
+    lastUpdate.textContent = '2026-06-01';
   }
 }
 
